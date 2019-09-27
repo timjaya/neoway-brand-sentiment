@@ -1,4 +1,4 @@
-# Model report - [`<@project>`]
+# Model report - neoway-brand-sentiment
 This report should contain all relevant information regarding your model. Someone reading this document should be able to easily understand and reproducible your findings.
 
 ## Checklist
