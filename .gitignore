@@ -1,2 +1,5 @@
 .DS_Store
 __pycache__/
+stanford_corenlp-full-2018-10-05/
+NER/spacy_train.csv
+data/restaurant_reviews_1900k.json
