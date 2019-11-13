@@ -1,5 +1,5 @@
-IMAGE = project
-PACKAGE = model_name
+IMAGE = neoway_nlp
+PACKAGE = neoway_nlp
 CLOUD_ROOT = s3://data-analytics-nw/models
 PWD := $(shell pwd)
 UID := $(shell id -u)
@@ -37,7 +37,7 @@ help:
 	@echo "VARS"
 	@echo "    VERSION            Software Version variable."
 	@echo "    INPUT              Path for data to be predicted."
-	@echo "    PARAMS             Parameters to pass as: $ model_name <command> $(PARAMS)."
+	@echo "    PARAMS             Parameters to pass as: $ neoway_nlp <command> $(PARAMS)."
 
 # Variable set checking
 guard-%:
@@ -157,7 +157,7 @@ clean-dist:
 	rm -rf $(DOCKER_VOLUME)/dist/
 
 clean: clean-dist
-	rm -rf model_name.egg_info
+	rm -rf neoway_nlp.egg_info
 	find . -iname __pycache__ | xargs rm -rf
 
 

@@ -1,4 +1,4 @@
-# Model report - neoway-brand-sentiment
+# Model report - [`neoway_nlp`]
 This report should contain all relevant information regarding your model. Someone reading this document should be able to easily understand and reproducible your findings.
 
 ## Checklist
@@ -28,7 +28,7 @@ The model classifies the type of cuisine of a restaurant. It is based on regular
 
 ```python
 pip install -e .
-python -m <@model> on_my_data.csv save_to_my_file.csv
+python -m neoway_nlp on_my_data.csv save_to_my_file.csv
 ```
 
 ### Output

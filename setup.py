@@ -3,7 +3,7 @@ import os
 from os import path
 
 # Model package name
-NAME = 'model_name'
+NAME = 'neoway_nlp'
 # Current Version
 VERSION = os.environ.get('APP_VERSION', 'latest')
 
@@ -26,8 +26,8 @@ setup(
     version=VERSION,
     description='<@description>',
     long_description=LONG_DESCRIPTION,
-    author='<@author>',
-    author_email='<@email>',
+    author='TimKartawijaya',
+    author_email='tim.kartawijaya@gmail.com',
     license='MIT',
     packages=find_packages(exclude=("tests", "docs")),
     entry_points={

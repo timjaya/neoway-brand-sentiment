@@ -14,4 +14,4 @@ RUN pip --disable-pip-version-check install -r requirements.txt
 COPY . ${APP_DIR}
 RUN pip --disable-pip-version-check install -e .
 RUN chmod -R a+w ${APP_DIR}
-ENTRYPOINT ["model_name"]
+ENTRYPOINT ["neoway_nlp"]

@@ -1,6 +1,4 @@
-# Neoway Brand Sentiment Software
-
-(software name still in the works...)
+# Neoway NLP
 
 This model is an NLP model that detects sentiments in an entity-level to solve brand sentiment detection for Neoway.
 

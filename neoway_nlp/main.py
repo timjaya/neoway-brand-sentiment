@@ -1,8 +1,7 @@
 import fire
-from model_name import config  # noqa
+from neoway_nlp import config, sentiment, entity_recognition  # noqa
 
-
-def features(**kwargs):
+def features(comments, brandlist, **kwargs):
     """Function that will generate the dataset for your model. It can
     be the target population, training or validation dataset. You can
     do in this step as well do the task of Feature Engineering.
@@ -76,8 +75,18 @@ def predict(input_data):
     As convention you should use predict/ directory
     to do experiments, like predict/input.csv.
     """
+
     print("==> PREDICT DATASET {}".format(input_data))
 
+    # TODO: Predict Entities Here using ER Model
+    # input: str of comment text
+    # output: list of entities
+
+    # TODO: Predict Sentiments of those entities using Sentiment Analysis
+    # input: str of comment text, list of entities
+    # output: list of tuples with str and score e.g. [('pasta', 0.3612)]
+
+    # TODO: return result
 
 # Run all pipeline sequentially
 def run(**kwargs):
@@ -85,9 +94,11 @@ def run(**kwargs):
     """
     print("Args: {}".format(kwargs))
     print("Running <@model> by <@author>")
+
+    # TODO: Train ER Model
     features(**kwargs)  # generate dataset for training
     train(**kwargs)     # training model and save to filesystem
-    metadata(**kwargs)  # performance report
+    metadata(**kwargs)  # performance report of ER Model with Sentiment Analysis
 
 
 def cli():
