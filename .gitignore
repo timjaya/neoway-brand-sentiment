@@ -1,3 +1,5 @@
+*.csv
+*.json
 .DS_Store
 __pycache__/
 NER/spacy_train.csv
