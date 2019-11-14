@@ -77,7 +77,7 @@ def metadata(**kwargs):
 
     # Metadata for Sentiment Analysis
     # Use predict from Sentiment Analysis
-    
+
     print("==> TESTING MODEL PERFORMANCE AND GENERATING METADATA")
 
 
@@ -120,8 +120,8 @@ def run(**kwargs):
     print("Running <@model> by <@author>")
 
     # TODO: Train ER Model
-    prepare_ER_training_data(**kwargs)  # generate dataset for training
-    train_ER(**kwargs)     # training model and save to filesystem
+    preprocess(**kwargs)  # generate dataset for training
+    train(**kwargs)     # training model and save to filesystem
     metadata(**kwargs)  # performance report of ER Model with Sentiment Analysis
 
 def cli():
