@@ -1,12 +1,15 @@
 import fire
-from neoway_nlp import config, sentiment, entity_recognition  # noqa
+from neoway_nlp import config
 
-def features(comments, brandlist, **kwargs):
+def preprocess(comments, brandlist, **kwargs):
     """Function that will generate the dataset for your model. It can
     be the target population, training or validation dataset. You can
     do in this step as well do the task of Feature Engineering.
 
-    NOTE
+    Input: Yelp dataset
+    Output: train/test CSV for ER model training
+
+    NOTE 
     ----
     config.data_path: workspace/data
 
@@ -40,12 +43,17 @@ def train(**kwargs):
     """
     print("==> TRAINING YOUR MODEL!")
 
+    # TODO: Load data from workspace/data
+    # TODO: Save trained model to workspace/models
+
 
 def metadata(**kwargs):
     """Generate metadata for model governance using testing!
+    TODO: since sentiment analysis validation takes a while, should take this as an option
 
     NOTE
     ----
+
     workspace_path: config.workspace_path
 
     In this section you should save your performance model,
@@ -64,6 +72,12 @@ def metadata(**kwargs):
        'source': 'https://archive.ics.uci.edu/ml/datasets/iris'
     }
     """
+
+    # Metadata for ER 
+
+    # Metadata for Sentiment Analysis
+    # Use predict from Sentiment Analysis
+    
     print("==> TESTING MODEL PERFORMANCE AND GENERATING METADATA")
 
 
@@ -78,17 +92,27 @@ def predict(input_data):
 
     print("==> PREDICT DATASET {}".format(input_data))
 
+
     # TODO: Predict Entities Here using ER Model
     # input: str of comment text
     # output: list of entities
 
+    # 1. Load saved ER Model using spacy.load
+    # 2. Predict entities for each input data
+
     # TODO: Predict Sentiments of those entities using Sentiment Analysis
     # input: str of comment text, list of entities
     # output: list of tuples with str and score e.g. [('pasta', 0.3612)]
+    
+    # 1. Start NLP Server
+    # 2. Predict results for each input data
+    # nlp = SentimentAnalyzer()
+    # nlp.predict(x)
+    # nlp.stop_server()
 
     # TODO: return result
 
-# Run all pipeline sequentially
+# Run all pipeline sequentially for training, create pickled models and subset data
 def run(**kwargs):
     """Run the complete pipeline of the model.
     """
@@ -96,15 +120,13 @@ def run(**kwargs):
     print("Running <@model> by <@author>")
 
     # TODO: Train ER Model
-    features(**kwargs)  # generate dataset for training
-    train(**kwargs)     # training model and save to filesystem
+    prepare_ER_training_data(**kwargs)  # generate dataset for training
+    train_ER(**kwargs)     # training model and save to filesystem
     metadata(**kwargs)  # performance report of ER Model with Sentiment Analysis
-
 
 def cli():
     """Caller of the fire cli"""
     return fire.Fire()
-
 
 if __name__ == '__main__':
     cli()
