@@ -2327,3 +2327,24 @@ carefully prepared asian fusion cuisine made with high quality ingredients. serv
 
 what impressed me the most was the fast service with having so many customers. great customer service!! food was very tasty, of good quality, great presentation and reasonably priced. definitely coming back!
 ['food']
+
+
+
+
+i ordered the heart shaped pizza and meatball sliders on v-day and it really hit the spot. my honey and i both had to work but wanted something easy that maintains the v-day spirit. why not a heart shaped pizza? they had a special of a large heart shape with an extra topping for about $20 with tax. pretty good deal!
+if you don't already know, metro pizza serves up a pretty yum pie. i am familiar with a few of their locations, and this one did not taint the reputation. 
+my favorite thing from metro however, is not the pizza. it is their meatball sliders with fries. bomb! yummy meatball sheltered in a garlic knot, yas please! they are soooo good! the fries is really good too. only complaint, fries portion shrinks every time we order the sliders. please don't skimp on the fries!
+my experience with metro is solely based on take out. i need to plan a time to dine-in.
+['pizza', 'meatball sliders', 'pie', 'fries']
+
+
+
+ rule_1
+
+
+
+ rule_2
+
+
+
+ rule_4
