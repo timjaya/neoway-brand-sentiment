@@ -176,3 +176,4 @@ my experience with metro is solely based on take out. i need to plan a time to d
 
 
  rule_1
+[('pizza', 'my favorite thing from metro however , is not the pizza'), ('meatball sliders', 'i ordered the heart shaped pizza and meatball sliders on v-day'), ('pie', "if you do n't already know , metro pizza serves up a pretty yum pie . i am familiar with a few of their locations , and this one did not taint the reputation ."), ('fries', 'the fries is really good too')]
