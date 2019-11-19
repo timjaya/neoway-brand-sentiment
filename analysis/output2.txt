@@ -1,7 +1,5 @@
 
 
-
-
 i ordered the heart shaped pizza and meatball sliders on v-day and it really hit the spot. my honey and i both had to work but wanted something easy that maintains the v-day spirit. why not a heart shaped pizza? they had a special of a large heart shape with an extra topping for about $20 with tax. pretty good deal!
 if you don't already know, metro pizza serves up a pretty yum pie. i am familiar with a few of their locations, and this one did not taint the reputation. 
 my favorite thing from metro however, is not the pizza. it is their meatball sliders with fries. bomb! yummy meatball sheltered in a garlic knot, yas please! they are soooo good! the fries is really good too. only complaint, fries portion shrinks every time we order the sliders. please don't skimp on the fries!
@@ -12,21 +10,25 @@ my experience with metro is solely based on take out. i need to plan a time to d
 
  rule_1
 [('pizza', 'my favorite thing from metro however , is not the pizza'), ('meatball sliders', 'i ordered the heart shaped pizza and meatball sliders on v-day'), ('pie', "if you do n't already know , metro pizza serves up a pretty yum pie . i am familiar with a few of their locations , and this one did not taint the reputation ."), ('fries', 'the fries is really good too')]
+[('pizza', 0.4588), ('meatball sliders', 0.0), ('pie', 0.4939), ('fries', 0.4927)]
 
 
 
  rule_2
-[[], ('pizza', 'my favorite thing from metro however , is not the pizza'), ('meatball sliders', "my favorite thing from metro however , is not the pizza . it is their meatball sliders with fries . bomb ! yummy meatball sheltered in a garlic knot , yas please ! they are soooo good ! the fries is really good too . only complaint , fries portion shrinks every time we order the sliders . please do n't skimp on the fries !"), ('pie', "if you do n't already know , metro pizza serves up a pretty yum pie . i am familiar with a few of their locations , and this one did not taint the reputation ."), ('fries', 'the fries is really good too')]
+[('pizza', 'my favorite thing from metro however , is not the pizza'), ('meatball sliders', "my favorite thing from metro however , is not the pizza . it is their meatball sliders with fries . bomb ! yummy meatball sheltered in a garlic knot , yas please ! they are soooo good ! the fries is really good too . only complaint , fries portion shrinks every time we order the sliders . please do n't skimp on the fries !"), ('pie', "if you do n't already know , metro pizza serves up a pretty yum pie . i am familiar with a few of their locations , and this one did not taint the reputation ."), ('fries', 'the fries is really good too')]
+[('pizza', 0.4588), ('meatball sliders', 0.9112), ('pie', 0.4939), ('fries', 0.4927)]
 
 
 
  rule_4
 [('pizza', 'my favorite thing from metro however , is not the pizza . it is their meatball sliders with fries . bomb ! yummy meatball sheltered in a garlic knot , yas please ! they are soooo good ! '), ('meatball sliders', 'i ordered the heart shaped pizza and meatball sliders on v-day and it really hit the spot . my honey and i both had to work but wanted something easy that maintains the v-day spirit . why not a heart shaped pizza ? they had a special of a large heart shape with an extra topping for about $ 20 with tax . pretty good deal !'), ('pie', "if you do n't already know , metro pizza serves up a pretty yum pie . i am familiar with a few of their locations , and this one did not taint the reputation ."), ('fries', "the fries is really good too . only complaint , fries portion shrinks every time we order the sliders . please do n't skimp on the fries !my experience with metro is solely based on take out . i need to plan a time to dine-in .")]
+[('pizza', 0.851), ('meatball sliders', 0.9577), ('pie', 0.4939), ('fries', 0.5551)]
 
 
 
  rule_5
 [('pizza', 'my favorite thing from metro however , is not the pizza'), ('meatball sliders', 'i ordered the heart shaped pizza and meatball sliders on v-day and it really hit the spot . my honey and i both had to work but wanted something easy that maintains the v-day spirit . why not a heart shaped pizza ? they had a special of a large heart shape with an extra topping for about $ 20 with tax . pretty good deal !'), ('pie', "if you do n't already know , metro pizza serves up a pretty yum pie . i am familiar with a few of their locations , and this one did not taint the reputation ."), ('fries', 'the fries is really good too')]
+[('pizza', 0.4588), ('meatball sliders', 0.9577), ('pie', 0.4939), ('fries', 0.4927)]
 
 
 
@@ -38,21 +40,25 @@ they have good chicken and bomb biscuits when fresh. i just hate the service and
 
  rule_1
 [('chicken', 'they have good chicken and bomb biscuits when fresh'), ('biscuits', 'they have good chicken and bomb biscuits when fresh'), ('sauce', 'atleast one sauce')]
+[('chicken', 0.25), ('biscuits', 0.25), ('sauce', 0.0)]
 
 
 
  rule_2
-[[], ('chicken', 'they have good chicken and bomb biscuits when fresh'), ('biscuits', 'they have good chicken and bomb biscuits when fresh'), ('sauce', 'i just hate the service and paying for sauce')]
+[('chicken', 'they have good chicken and bomb biscuits when fresh'), ('biscuits', 'they have good chicken and bomb biscuits when fresh'), ('sauce', 'i just hate the service and paying for sauce')]
+[('chicken', 0.25), ('biscuits', 0.25), ('sauce', -0.5719)]
 
 
 
  rule_4
 [('chicken', 'they have good chicken and bomb biscuits when fresh . i just hate the service and paying for sauce . i mean i just bought a 12 pc bucket can i have '), ('biscuits', 'they have good chicken and bomb biscuits when fresh . i just hate the service and paying for sauce . i mean i just bought a 12 pc bucket can i have '), ('sauce', "atleast one sauce ? i understand if i did n't buy chicken but whatever lol end rant .")]
+[('chicken', -0.4019), ('biscuits', -0.4019), ('sauce', 0.1531)]
 
 
 
  rule_5
 [('chicken', 'they have good chicken and bomb biscuits when fresh'), ('biscuits', 'they have good chicken and bomb biscuits when fresh'), ('sauce', "atleast one sauce ? i understand if i did n't buy chicken but whatever lol end rant .")]
+[('chicken', 0.25), ('biscuits', 0.25), ('sauce', 0.1531)]
 
 
 
@@ -68,21 +74,25 @@ this is one of a few locations in montreal where the noodles are hand made and f
 
  rule_1
 [('noodles', 'the noodles are hand made and freshly made every day'), ('chilies', "it 's cash only , and ask for some of their home made chilies they keep behind the counter for regulars")]
+[('noodles', 0.4939), ('chilies', 0.0)]
 
 
 
  rule_2
-[[], ('noodles', 'the noodles are hand made and freshly made every day'), ('chilies', "this is one of a few locations in montreal where the noodles are hand made and freshly made every day . protip : it 's cash only , and ask for some of their home made chilies they keep behind the counter for regulars .")]
+[('noodles', 'the noodles are hand made and freshly made every day'), ('chilies', "this is one of a few locations in montreal where the noodles are hand made and freshly made every day . protip : it 's cash only , and ask for some of their home made chilies they keep behind the counter for regulars .")]
+[('noodles', 0.4939), ('chilies', 0.4939)]
 
 
 
  rule_4
 [('noodles', 'the noodles are hand made and freshly made every day . protip : '), ('chilies', "it 's cash only , and ask for some of their home made chilies they keep behind the counter for regulars .")]
+[('noodles', 0.4939), ('chilies', 0.0)]
 
 
 
  rule_5
 [('noodles', 'the noodles are hand made and freshly made every day'), ('chilies', "it 's cash only , and ask for some of their home made chilies they keep behind the counter for regulars .")]
+[('noodles', 0.4939), ('chilies', 0.0)]
 
 
 
@@ -128,41 +138,6 @@ great spot for mediterranean eats!
 
 
  rule_1
-[('labneh', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived'), ('greek yogurt', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived'), ('pickled vegetables', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived'), ('olives', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived'), ('pita chips', "it 's literally the same as the duzan salad with pita chips thrown on top"), ('service', 'service was really great'), ('staff', 'the owner and staff were very friendly and accommodating to our large group'), ('bourekas', 'they sent out a plate of three types -LRB- potato , cheese , spinach -RRB- of bourekas for us to try'), ('potato', 'they sent out a plate of three types -LRB- potato , cheese , spinach -RRB- of bourekas for us to try'), ('cheese', 'the cheese is gooey'), ('spinach', 'they sent out a plate of three types -LRB- potato , cheese , spinach -RRB- of bourekas for us to try'), ('pastry', 'the pastry is really flaky'), ('tapas', "there 's a list of suggested tapas on the menu and the wall -LRB- slightly different -RRB-"), ('duzan salad', "it 's literally the same as the duzan salad with pita chips thrown on top"), ('fattoush salad', "i would skip the labneh , fattoush salad -LRB- it 's literally the same as the duzan salad with pita chips thrown on top -RRB- , and tahini salad -LRB- bowl of tahini sauce with diced tomatoes -RRB- ."), ('baba ganoush', "my favorites : baba ganoush , magadara , falafel , and rice . they 're already some of my favorite mediterranean dishes and these are just particularly great versions of them . this was my first experience with magadara , but was easily one of the best parts of my meal . i would absolutely order all of these dishes again ."), ('tahini salad', "i would skip the labneh , fattoush salad -LRB- it 's literally the same as the duzan salad with pita chips thrown on top -RRB- , and tahini salad -LRB- bowl of tahini sauce with diced tomatoes -RRB- ."), ('magadara', 'these are just particularly great versions of them . this was my first experience with magadara , but was easily one of the best parts of my meal'), ('rice', "you 're paying the same price for four pieces of falafel as a small bowl of tzatziki sauce"), ('kibbeh', 'we were charged $ 3.49 for one kibbeh'), ('baklava', 'tonight we got large baklava cigars')]
-
-
-
- rule_2
-[[], ('labneh', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived'), ('greek yogurt', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived'), ('pickled vegetables', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived'), ('olives', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived'), ('pita chips', "it 's literally the same as the duzan salad with pita chips thrown on top"), ('service', 'service was really great'), ('staff', 'the owner and staff were very friendly and accommodating to our large group'), ('bourekas', 'they sent out a plate of three types -LRB- potato , cheese , spinach -RRB- of bourekas for us to try ! they were all delicious . the pastry is really flaky and all the fillings were great . i would have loved to order these had i not already ordered so much food'), ('potato', 'they sent out a plate of three types -LRB- potato , cheese , spinach -RRB- of bourekas for us to try ! they were all delicious . the pastry is really flaky and all the fillings were great . i would have loved to order these had i not already ordered so much food'), ('cheese', 'they sent out a plate of three types -LRB- potato , cheese , spinach -RRB- of bourekas for us to try ! they were all delicious . the pastry is really flaky and all the fillings were great . i would have loved to order these had i not already ordered so much food'), ('spinach', 'they sent out a plate of three types -LRB- potato , cheese , spinach -RRB- of bourekas for us to try ! they were all delicious . the pastry is really flaky and all the fillings were great . i would have loved to order these had i not already ordered so much food'), ('pastry', 'the pastry is really flaky and all the fillings were great'), ('tapas', "their tapas was such a wonderful way to try most of the menu , but it 's not a very good deal . you 're paying the same price for four pieces of falafel as a small bowl of tzatziki sauce"), ('duzan salad', "it 's literally the same as the duzan salad with pita chips thrown on top"), ('fattoush salad', "i would skip the labneh , fattoush salad -LRB- it 's literally the same as the duzan salad with pita chips thrown on top -RRB- , and tahini salad -LRB- bowl of tahini sauce with diced tomatoes -RRB- ."), ('baba ganoush', "my favorites : baba ganoush , magadara , falafel , and rice . they 're already some of my favorite mediterranean dishes and these are just particularly great versions of them . this was my first experience with magadara , but was easily one of the best parts of my meal . i would absolutely order all of these dishes again ."), ('tahini salad', "i would skip the labneh , fattoush salad -LRB- it 's literally the same as the duzan salad with pita chips thrown on top -RRB- , and tahini salad -LRB- bowl of tahini sauce with diced tomatoes -RRB- ."), ('magadara', 'these are just particularly great versions of them . this was my first experience with magadara , but was easily one of the best parts of my meal'), ('rice', "their tapas was such a wonderful way to try most of the menu , but it 's not a very good deal . you 're paying the same price for four pieces of falafel as a small bowl of tzatziki sauce"), ('kibbeh', 'we were charged $ 3.49 for one kibbeh'), ('baklava', 'tonight we got large baklava cigars . it was tasty and not overly sweet like some baklavas')]
-
-
-
- rule_4
-[('labneh', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived .'), ('greek yogurt', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived .'), ('pickled vegetables', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived .'), ('olives', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived .'), ('pita chips', "it 's literally the same as the duzan salad with pita chips thrown on top -RRB- , and tahini salad -LRB- bowl of tahini sauce with diced tomatoes -RRB- .lamb shawarma sandwich -LRB- $ 9.99 -RRB- : a nice sized sandwich , but sadly , no accompanying sides . the lamb was tender and the overall , the sandwich was good . i did n't love it , but the tahini and hot sauces helped it a lot . i would probably opt for the plate next time .i also tried the chicken shawarma , schnitzel , shish kabob , and fries . everything was good . the chicken was moist and flavorful . the fries lacked a touch of salt , but i liked the spices on it .turkish coffee -LRB- $ 2.99 -RRB- : wonderful spices and a really beautiful aroma . i had to ask for sugar since there was only a low-calorie sweetener available on the table . the coffee was so lovely with just a touch of sugar and it was perfect with dessert !baklava -LRB- $ 2.99 -RRB- : delicious . i guess the owner likes to play around with the shapes -LRB- haha -RRB- , so "), ('service', 'service was really great ! '), ('staff', 'the owner and staff were very friendly and accommodating to our large group . i was asking about their bourekas since the wall menu says to ask about their flavors and '), ('bourekas', 'they sent out a plate of three types -LRB- potato , cheese , spinach -RRB- of bourekas for us to try ! they were all delicious . '), ('potato', 'they sent out a plate of three types -LRB- potato , cheese , spinach -RRB- of bourekas for us to try ! they were all delicious . '), ('cheese', 'the cheese is gooey and the kadayif is super crispy with a nice sweetness from the syrup . highly recommend this dessert !great spot for mediterranean eats !'), ('spinach', 'they sent out a plate of three types -LRB- potato , cheese , spinach -RRB- of bourekas for us to try ! they were all delicious . '), ('pastry', 'the pastry is really flaky and all the fillings were great . i would have loved to order these had i not already ordered so much food !tapas -LRB- $ 3.49/each -RRB-buy 5 , get 1 free or buy 10 , get 2 freehummusduzan salad -LRB- lettuce , tomato , cucumber , onion -RRB-tabboulehfattoush salad -LRB- pita chips + duzan salad -RRB-baba ganoushtahini saladgrape leavesmagadara -LRB- lentil , rice , onion , spices -RRB-tzatziki saucekibbeh ball -LRB- bulgar , chopped meat and onion -RRB-falafelrice'), ('tapas', "there 's a list of suggested tapas on the menu and the wall -LRB- slightly different -RRB- , but you can choose any item from the menu . i went with most of the items on their list except labneh -LRB- since this is already on the table -RRB- . i opted for kibbeh balls , but did n't realize that their kibbeh is sold by the piece -LRB- $ 2.39 -RRB- and is significantly cheaper than as a tapa -LRB- $ 3.49 -RRB- since you only get one anyway . i wish someone had told us -LRB- "), ('duzan salad', "it 's literally the same as the duzan salad with pita chips thrown on top -RRB- , and tahini salad -LRB- bowl of tahini sauce with diced tomatoes -RRB- .lamb shawarma sandwich -LRB- $ 9.99 -RRB- : a nice sized sandwich , but sadly , no accompanying sides . the lamb was tender and the overall , the sandwich was good . i did n't love it , but the tahini and hot sauces helped it a lot . i would probably opt for the plate next time .i also tried the chicken shawarma , schnitzel , shish kabob , and fries . everything was good . the chicken was moist and flavorful . the fries lacked a touch of salt , but i liked the spices on it .turkish coffee -LRB- $ 2.99 -RRB- : wonderful spices and a really beautiful aroma . i had to ask for sugar since there was only a low-calorie sweetener available on the table . the coffee was so lovely with just a touch of sugar and it was perfect with dessert !baklava -LRB- $ 2.99 -RRB- : delicious . i guess the owner likes to play around with the shapes -LRB- haha -RRB- , so "), ('fattoush salad', "i would skip the labneh , fattoush salad -LRB- it 's literally the same as the duzan salad with pita chips thrown on top -RRB- , and tahini salad -LRB- bowl of tahini sauce with diced tomatoes -RRB- .lamb shawarma sandwich -LRB- $ 9.99 -RRB- : a nice sized sandwich , but sadly , no accompanying sides . the lamb was tender and the overall , the sandwich was good . i did n't love it , but the tahini and hot sauces helped it a lot . i would probably opt for the plate next time .i also tried the chicken shawarma , schnitzel , shish kabob , and fries . everything was good . the chicken was moist and flavorful . the fries lacked a touch of salt , but i liked the spices on it .turkish coffee -LRB- $ 2.99 -RRB- : wonderful spices and a really beautiful aroma . i had to ask for sugar since there was only a low-calorie sweetener available on the table . the coffee was so lovely with just a touch of sugar and it was perfect with dessert !baklava -LRB- $ 2.99 -RRB- : delicious . i guess the owner likes to play around with the shapes -LRB- haha -RRB- , so "), ('baba ganoush', "my favorites : baba ganoush , magadara , falafel , and rice . they 're already some of my favorite mediterranean dishes and these are just particularly great versions of them . this was my first experience with magadara , but was easily one of the best parts of my meal . i would absolutely order all of these dishes again ."), ('tahini salad', "i would skip the labneh , fattoush salad -LRB- it 's literally the same as the duzan salad with pita chips thrown on top -RRB- , and tahini salad -LRB- bowl of tahini sauce with diced tomatoes -RRB- .lamb shawarma sandwich -LRB- $ 9.99 -RRB- : a nice sized sandwich , but sadly , no accompanying sides . the lamb was tender and the overall , the sandwich was good . i did n't love it , but the tahini and hot sauces helped it a lot . i would probably opt for the plate next time .i also tried the chicken shawarma , schnitzel , shish kabob , and fries . everything was good . the chicken was moist and flavorful . the fries lacked a touch of salt , but i liked the spices on it .turkish coffee -LRB- $ 2.99 -RRB- : wonderful spices and a really beautiful aroma . i had to ask for sugar since there was only a low-calorie sweetener available on the table . the coffee was so lovely with just a touch of sugar and it was perfect with dessert !baklava -LRB- $ 2.99 -RRB- : delicious . i guess the owner likes to play around with the shapes -LRB- haha -RRB- , so "), ('magadara', 'these are just particularly great versions of them . this was my first experience with magadara , but was easily one of the best parts of my meal . i would absolutely order all of these dishes again .'), ('rice', "you 're paying the same price for four pieces of falafel as a small bowl of tzatziki sauce . also , pita bread does not come with tapas , so that needs to be ordered separately ; i was told it was going to be $ 0.79/each , but i do n't think it was on my bill ?"), ('kibbeh', "we were charged $ 3.49 for one kibbeh -RRB- . i thought their tapas was such a wonderful way to try most of the menu , but it 's not a very good deal . "), ('baklava', "tonight we got large baklava cigars . it was tasty and not overly sweet like some baklavas ; this one actually crumbled .kunaffe w/ cheese and walnuts -LRB- $ 8.99 -RRB- : turkish pastry of semi-soft cheese and walnuts between layers of crispy kadayif , served with a light syrup and crushed pistachios . this is crazy delicious . it 's served hot , so ")]
-
-
-
- rule_5
-[('labneh', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived .'), ('greek yogurt', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived .'), ('pickled vegetables', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived .'), ('olives', 'complimentary treats such as labneh -LRB- strained greek yogurt with herbs -RRB- , pickled vegetables and olives , and pita chips were placed on the table as we arrived .'), ('pita chips', "it 's literally the same as the duzan salad with pita chips thrown on top -RRB- , and tahini salad -LRB- bowl of tahini sauce with diced tomatoes -RRB- .lamb shawarma sandwich -LRB- $ 9.99 -RRB- : a nice sized sandwich , but sadly , no accompanying sides . the lamb was tender and the overall , the sandwich was good . i did n't love it , but the tahini and hot sauces helped it a lot . i would probably opt for the plate next time .i also tried the chicken shawarma , schnitzel , shish kabob , and fries . everything was good . the chicken was moist and flavorful . the fries lacked a touch of salt , but i liked the spices on it .turkish coffee -LRB- $ 2.99 -RRB- : wonderful spices and a really beautiful aroma . i had to ask for sugar since there was only a low-calorie sweetener available on the table . the coffee was so lovely with just a touch of sugar and it was perfect with dessert !baklava -LRB- $ 2.99 -RRB- : delicious . i guess the owner likes to play around with the shapes -LRB- haha -RRB- , so "), ('service', 'service was really great'), ('staff', 'the owner and staff were very friendly and accommodating to our large group'), ('bourekas', 'they sent out a plate of three types -LRB- potato , cheese , spinach -RRB- of bourekas for us to try ! they were all delicious . '), ('potato', 'they sent out a plate of three types -LRB- potato , cheese , spinach -RRB- of bourekas for us to try ! they were all delicious . '), ('cheese', 'the cheese is gooey and the kadayif is super crispy with a nice sweetness from the syrup . highly recommend this dessert !great spot for mediterranean eats !'), ('spinach', 'they sent out a plate of three types -LRB- potato , cheese , spinach -RRB- of bourekas for us to try ! they were all delicious . '), ('pastry', 'the pastry is really flaky and all the fillings were great . i would have loved to order these had i not already ordered so much food !tapas -LRB- $ 3.49/each -RRB-buy 5 , get 1 free or buy 10 , get 2 freehummusduzan salad -LRB- lettuce , tomato , cucumber , onion -RRB-tabboulehfattoush salad -LRB- pita chips + duzan salad -RRB-baba ganoushtahini saladgrape leavesmagadara -LRB- lentil , rice , onion , spices -RRB-tzatziki saucekibbeh ball -LRB- bulgar , chopped meat and onion -RRB-falafelrice'), ('tapas', "there 's a list of suggested tapas on the menu and the wall -LRB- slightly different -RRB- , but you can choose any item from the menu . i went with most of the items on their list except labneh -LRB- since this is already on the table -RRB- . i opted for kibbeh balls , but did n't realize that their kibbeh is sold by the piece -LRB- $ 2.39 -RRB- and is significantly cheaper than as a tapa -LRB- $ 3.49 -RRB- since you only get one anyway . i wish someone had told us -LRB- "), ('duzan salad', "it 's literally the same as the duzan salad with pita chips thrown on top -RRB- , and tahini salad -LRB- bowl of tahini sauce with diced tomatoes -RRB- .lamb shawarma sandwich -LRB- $ 9.99 -RRB- : a nice sized sandwich , but sadly , no accompanying sides . the lamb was tender and the overall , the sandwich was good . i did n't love it , but the tahini and hot sauces helped it a lot . i would probably opt for the plate next time .i also tried the chicken shawarma , schnitzel , shish kabob , and fries . everything was good . the chicken was moist and flavorful . the fries lacked a touch of salt , but i liked the spices on it .turkish coffee -LRB- $ 2.99 -RRB- : wonderful spices and a really beautiful aroma . i had to ask for sugar since there was only a low-calorie sweetener available on the table . the coffee was so lovely with just a touch of sugar and it was perfect with dessert !baklava -LRB- $ 2.99 -RRB- : delicious . i guess the owner likes to play around with the shapes -LRB- haha -RRB- , so "), ('fattoush salad', "i would skip the labneh , fattoush salad -LRB- it 's literally the same as the duzan salad with pita chips thrown on top -RRB- , and tahini salad -LRB- bowl of tahini sauce with diced tomatoes -RRB- .lamb shawarma sandwich -LRB- $ 9.99 -RRB- : a nice sized sandwich , but sadly , no accompanying sides . the lamb was tender and the overall , the sandwich was good . i did n't love it , but the tahini and hot sauces helped it a lot . i would probably opt for the plate next time .i also tried the chicken shawarma , schnitzel , shish kabob , and fries . everything was good . the chicken was moist and flavorful . the fries lacked a touch of salt , but i liked the spices on it .turkish coffee -LRB- $ 2.99 -RRB- : wonderful spices and a really beautiful aroma . i had to ask for sugar since there was only a low-calorie sweetener available on the table . the coffee was so lovely with just a touch of sugar and it was perfect with dessert !baklava -LRB- $ 2.99 -RRB- : delicious . i guess the owner likes to play around with the shapes -LRB- haha -RRB- , so "), ('baba ganoush', "my favorites : baba ganoush , magadara , falafel , and rice . they 're already some of my favorite mediterranean dishes and these are just particularly great versions of them . this was my first experience with magadara , but was easily one of the best parts of my meal . i would absolutely order all of these dishes again ."), ('tahini salad', "i would skip the labneh , fattoush salad -LRB- it 's literally the same as the duzan salad with pita chips thrown on top -RRB- , and tahini salad -LRB- bowl of tahini sauce with diced tomatoes -RRB- .lamb shawarma sandwich -LRB- $ 9.99 -RRB- : a nice sized sandwich , but sadly , no accompanying sides . the lamb was tender and the overall , the sandwich was good . i did n't love it , but the tahini and hot sauces helped it a lot . i would probably opt for the plate next time .i also tried the chicken shawarma , schnitzel , shish kabob , and fries . everything was good . the chicken was moist and flavorful . the fries lacked a touch of salt , but i liked the spices on it .turkish coffee -LRB- $ 2.99 -RRB- : wonderful spices and a really beautiful aroma . i had to ask for sugar since there was only a low-calorie sweetener available on the table . the coffee was so lovely with just a touch of sugar and it was perfect with dessert !baklava -LRB- $ 2.99 -RRB- : delicious . i guess the owner likes to play around with the shapes -LRB- haha -RRB- , so "), ('magadara', 'these are just particularly great versions of them . this was my first experience with magadara , but was easily one of the best parts of my meal'), ('rice', "you 're paying the same price for four pieces of falafel as a small bowl of tzatziki sauce . also , pita bread does not come with tapas , so that needs to be ordered separately ; i was told it was going to be $ 0.79/each , but i do n't think it was on my bill ?"), ('kibbeh', "we were charged $ 3.49 for one kibbeh -RRB- . i thought their tapas was such a wonderful way to try most of the menu , but it 's not a very good deal . "), ('baklava', "tonight we got large baklava cigars . it was tasty and not overly sweet like some baklavas ; this one actually crumbled .kunaffe w/ cheese and walnuts -LRB- $ 8.99 -RRB- : turkish pastry of semi-soft cheese and walnuts between layers of crispy kadayif , served with a light syrup and crushed pistachios . this is crazy delicious . it 's served hot , so ")]
-
-
-
-
-good food. great prices.  awesome customer service!
-
-the establishment is super clean and the employees were helpful and on top of everything.  they have a large variety of foods and toppings.  i had fun trying all the different flavors of their soda machine.  
-
-definitely a good place to grab a quick bite to eat without breaking the bank.
-['bbq chicken']
-
-
-
- rule_1
-[]
-
-
-
- rule_2
 
 
 
@@ -177,3 +152,131 @@ my experience with metro is solely based on take out. i need to plan a time to d
 
  rule_1
 [('pizza', 'my favorite thing from metro however , is not the pizza'), ('meatball sliders', 'i ordered the heart shaped pizza and meatball sliders on v-day'), ('pie', "if you do n't already know , metro pizza serves up a pretty yum pie . i am familiar with a few of their locations , and this one did not taint the reputation ."), ('fries', 'the fries is really good too')]
+[('pizza', 0.4588), ('meatball sliders', 0.0), ('pie', 0.4939), ('fries', 0.4927)]
+
+
+
+ rule_2
+[('pizza', 'my favorite thing from metro however , is not the pizza'), ('meatball sliders', "my favorite thing from metro however , is not the pizza . it is their meatball sliders with fries . bomb ! yummy meatball sheltered in a garlic knot , yas please ! they are soooo good ! the fries is really good too . only complaint , fries portion shrinks every time we order the sliders . please do n't skimp on the fries !"), ('pie', "if you do n't already know , metro pizza serves up a pretty yum pie . i am familiar with a few of their locations , and this one did not taint the reputation ."), ('fries', 'the fries is really good too')]
+[('pizza', 0.4588), ('meatball sliders', 0.9112), ('pie', 0.4939), ('fries', 0.4927)]
+
+
+
+ rule_4
+[('pizza', 'my favorite thing from metro however , is not the pizza . it is their meatball sliders with fries . bomb ! yummy meatball sheltered in a garlic knot , yas please ! they are soooo good ! '), ('meatball sliders', 'i ordered the heart shaped pizza and meatball sliders on v-day and it really hit the spot . my honey and i both had to work but wanted something easy that maintains the v-day spirit . why not a heart shaped pizza ? they had a special of a large heart shape with an extra topping for about $ 20 with tax . pretty good deal !'), ('pie', "if you do n't already know , metro pizza serves up a pretty yum pie . i am familiar with a few of their locations , and this one did not taint the reputation ."), ('fries', "the fries is really good too . only complaint , fries portion shrinks every time we order the sliders . please do n't skimp on the fries !my experience with metro is solely based on take out . i need to plan a time to dine-in .")]
+[('pizza', 0.851), ('meatball sliders', 0.9577), ('pie', 0.4939), ('fries', 0.5551)]
+
+
+
+ rule_5
+[('pizza', 'my favorite thing from metro however , is not the pizza'), ('meatball sliders', 'i ordered the heart shaped pizza and meatball sliders on v-day and it really hit the spot . my honey and i both had to work but wanted something easy that maintains the v-day spirit . why not a heart shaped pizza ? they had a special of a large heart shape with an extra topping for about $ 20 with tax . pretty good deal !'), ('pie', "if you do n't already know , metro pizza serves up a pretty yum pie . i am familiar with a few of their locations , and this one did not taint the reputation ."), ('fries', 'the fries is really good too')]
+[('pizza', 0.4588), ('meatball sliders', 0.9577), ('pie', 0.4939), ('fries', 0.4927)]
+
+
+
+
+they have good chicken and bomb biscuits when fresh. i just hate the service and paying for sauce. i mean i just bought a 12 pc bucket can i have atleast one sauce? i understand if i didn't buy chicken but whatever lol end rant.
+['chicken', 'biscuits', 'sauce']
+
+
+
+ rule_1
+[('chicken', 'they have good chicken and bomb biscuits when fresh'), ('biscuits', 'they have good chicken and bomb biscuits when fresh'), ('sauce', 'atleast one sauce')]
+[('chicken', 0.25), ('biscuits', 0.25), ('sauce', 0.0)]
+
+
+
+ rule_2
+[('chicken', 'they have good chicken and bomb biscuits when fresh'), ('biscuits', 'they have good chicken and bomb biscuits when fresh'), ('sauce', 'i just hate the service and paying for sauce')]
+[('chicken', 0.25), ('biscuits', 0.25), ('sauce', -0.5719)]
+
+
+
+ rule_4
+[('chicken', 'they have good chicken and bomb biscuits when fresh . i just hate the service and paying for sauce . i mean i just bought a 12 pc bucket can i have '), ('biscuits', 'they have good chicken and bomb biscuits when fresh . i just hate the service and paying for sauce . i mean i just bought a 12 pc bucket can i have '), ('sauce', "atleast one sauce ? i understand if i did n't buy chicken but whatever lol end rant .")]
+[('chicken', -0.4019), ('biscuits', -0.4019), ('sauce', 0.1531)]
+
+
+
+ rule_5
+[('chicken', 'they have good chicken and bomb biscuits when fresh'), ('biscuits', 'they have good chicken and bomb biscuits when fresh'), ('sauce', "atleast one sauce ? i understand if i did n't buy chicken but whatever lol end rant .")]
+[('chicken', 0.25), ('biscuits', 0.25), ('sauce', 0.1531)]
+
+
+
+
+definitely one of the busiest stalls in the food court of the faubourg building. 
+
+i come here once in a while in between classes. their noodles are always freshly made, and cooked to order.
+
+this is one of a few locations in montreal where the noodles are hand made and freshly made every day. protip: it's cash only, and ask for some of their home made chilies they keep behind the counter for regulars.
+['noodles', 'chilies']
+
+
+
+ rule_1
+[('noodles', 'the noodles are hand made and freshly made every day'), ('chilies', "it 's cash only , and ask for some of their home made chilies they keep behind the counter for regulars")]
+[('noodles', 0.4939), ('chilies', 0.0)]
+
+
+
+ rule_2
+[('noodles', 'the noodles are hand made and freshly made every day'), ('chilies', "this is one of a few locations in montreal where the noodles are hand made and freshly made every day . protip : it 's cash only , and ask for some of their home made chilies they keep behind the counter for regulars .")]
+[('noodles', 0.4939), ('chilies', 0.4939)]
+
+
+
+ rule_4
+[('noodles', 'the noodles are hand made and freshly made every day . protip : '), ('chilies', "it 's cash only , and ask for some of their home made chilies they keep behind the counter for regulars .")]
+[('noodles', 0.4939), ('chilies', 0.0)]
+
+
+
+ rule_5
+[('noodles', 'the noodles are hand made and freshly made every day'), ('chilies', "it 's cash only , and ask for some of their home made chilies they keep behind the counter for regulars .")]
+[('noodles', 0.4939), ('chilies', 0.0)]
+
+
+
+
+i called to make a reservation since i was coming in with a large group (9). it was simple and they had put a couple tables together to accommodate. complimentary treats such as labneh (strained greek yogurt with herbs), pickled vegetables and olives, and pita chips were placed on the table as we arrived. 
+
+service was really great! the owner and staff were very friendly and accommodating to our large group. i was asking about their bourekas since the wall menu says to ask about their flavors and they sent out a plate of three types (potato, cheese, spinach) of bourekas for us to try! they were all delicious. the pastry is really flaky and all the fillings were great. i would have loved to order these had i not already ordered so much food!
+
+tapas ($3.49/each)
+buy 5, get 1 free or buy 10, get 2 free
+hummus
+duzan salad (lettuce, tomato, cucumber, onion)
+tabbouleh
+fattoush salad (pita chips + duzan salad)
+baba ganoush
+tahini salad
+grape leaves
+magadara (lentil, rice, onion, spices)
+tzatziki sauce
+kibbeh ball (bulgar, chopped meat and onion)
+falafel
+rice
+
+there's a list of suggested tapas on the menu and the wall (slightly different), but you can choose any item from the menu. i went with most of the items on their list except labneh (since this is already on the table). i opted for kibbeh balls, but didn't realize that their kibbeh is sold by the piece ($2.39) and is significantly cheaper than as a tapa ($3.49) since you only get one anyway. i wish someone had told us (we were charged $3.49 for one kibbeh). i thought their tapas was such a wonderful way to try most of the menu, but it's not a very good deal. you're paying the same price for four pieces of falafel as a small bowl of tzatziki sauce. also, pita bread does not come with tapas, so that needs to be ordered separately; i was told it was going to be $0.79/each, but i don't think it was on my bill?
+
+my favorites: baba ganoush, magadara, falafel, and rice. they're already some of my favorite mediterranean dishes and these are just particularly great versions of them. this was my first experience with magadara, but was easily one of the best parts of my meal. i would absolutely order all of these dishes again.
+
+i would skip the labneh, fattoush salad (it's literally the same as the duzan salad with pita chips thrown on top), and tahini salad (bowl of tahini sauce with diced tomatoes).
+
+lamb shawarma sandwich ($9.99): a nice sized sandwich, but sadly, no accompanying sides. the lamb was tender and the overall, the sandwich was good. i didn't love it, but the tahini and hot sauces helped it a lot. i would probably opt for the plate next time.
+
+i also tried the chicken shawarma, schnitzel, shish kabob, and fries. everything was good. the chicken was moist and flavorful. the fries lacked a touch of salt, but i liked the spices on it.
+
+turkish coffee ($2.99): wonderful spices and a really beautiful aroma. i had to ask for sugar since there was only a low-calorie sweetener available on the table. the coffee was so lovely with just a touch of sugar and it was perfect with dessert!
+
+baklava ($2.99): delicious. i guess the owner likes to play around with the shapes (haha), so tonight we got large baklava cigars. it was tasty and not overly sweet like some baklavas; this one actually crumbled.
+
+kunaffe w/ cheese and walnuts ($8.99): turkish pastry of semi-soft cheese and walnuts between layers of crispy kadayif, served with a light syrup and crushed pistachios. this is crazy delicious. it's served hot, so the cheese is gooey and the kadayif is super crispy with a nice sweetness from the syrup. highly recommend this dessert!
+
+great spot for mediterranean eats!
+['labneh', 'greek yogurt', 'pickled vegetables', 'olives', 'pita chips', 'service', 'staff', 'bourekas', 'potato', 'cheese', 'spinach', 'pastry', 'tapas', 'hummus', 'duzan salad', 'tabbouleh', 'fattoush salad', 'baba ganoush', 'tahini salad', 'grape leaves', 'magadara', 'rice', 'kibbeh', 'lamb shawarma', 'baklava', 'turkish coffee']
+
+
+
+ rule_1
