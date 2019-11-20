@@ -56,7 +56,11 @@ def preprocess(comments, brandlist, sample_size=20000, validation_size=0.1,
                 if start_index == -1:
                     break
                 if not text[start_index-1].isalpha() and (end_index == len(text) or not text[end_index].isalpha()):
-                    brands_tmp.append((start_index, end_index, "PRODUCT"))
+		    if brand not in ['place', 'restaurant', 'cafe', 'establishment', 'diner']:
+                    	brands_tmp.append((start_index, end_index, "PRODUCT"))
+                    else:
+                        brands_tmp.append((start_index, end_index, "ESTABLISHMENT"))
+		
                 start_index += len(brand)
         train_data.append((i.review_id, i.text, brands_tmp))
 
