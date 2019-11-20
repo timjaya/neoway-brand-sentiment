@@ -1,7 +1,11 @@
 import fire
 from neoway_nlp import config
+from pandas import pd
+import numpy as np
+from sklearn.model_selection import train_test_split
 
-def preprocess(comments, brandlist, **kwargs):
+def preprocess(comments, brandlist, sample_size=20000, validation_size=0.1, 
+	test_size=0.25, **kwargs):
     """Function that will generate the dataset for your model. It can
     be the target population, training or validation dataset. You can
     do in this step as well do the task of Feature Engineering.
@@ -26,6 +30,45 @@ def preprocess(comments, brandlist, **kwargs):
     With these files you can train your model!
     """
     print("==> GENERATING DATASETS FOR TRAINING YOUR MODEL")
+
+    # Import Yelp reviews and brand list
+    reviews = pd.read_json(comments, lines=True)
+    brands = pd.read_csv(brandlist, header=None, names=['word'])
+
+    # Convert brands in brand list to lowercase
+    brand.word = brand.word.str.lower()
+
+    # Extract a sample of reviews to generate training/validation/test data from
+    sample = pd.DataFrame(np.random.randn(kwargs['sample_size']))
+
+    # Convert reviews to format relevant for spacy training
+	for r, i in sample.iterrows():
+	    brands = []
+	    for brand in brandlist.word:
+	        text = i.text.lower()
+	        start_index = 0
+	        while start_index < len(text):
+	            start_index = text.find(brand, start_index)
+	            end_index = start_index + len(brand)
+	            if start_index == -1:
+	                break
+	            if not text[start_index-1].isalpha() and (end_index == len(text) or not text[end_index].isalpha()):
+	                brands.append((start_index, end_index, "PRODUCT"))
+	            start_index += len(brand)
+	    train_data.append((i.review_id, i.text, brands))
+
+	result = pd.DataFrame(train_data, columns=['review_id', 'text', 'entities'])
+    
+    # Split processed data into train/validation/test sets
+	train_validation, test = train_test_split(result, test_size=test_size)
+	train, validation = train_test_split(train_validation, test_size=validation_size / (1-test_size))
+
+	# Output to CSV in data folder
+	train.to_csv('../data/train.csv')
+	validation.to_csv('../data/validation.csv')
+	test.to_csv('../data/test.csv')
+
+    print("==> DATASETS GENERATED")
 
 
 def train(**kwargs):
