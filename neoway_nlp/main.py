@@ -32,43 +32,49 @@ def preprocess(comments, brandlist, sample_size=20000, validation_size=0.1,
     print("==> GENERATING DATASETS FOR TRAINING YOUR MODEL")
 
     # Import Yelp reviews and brand list
+    print("   ===> IMPORTING REVIEWS")
     reviews = pd.read_json(comments, lines=True)
+    print("   ===> IMPORTING BRAND LIST")
     brands = pd.read_csv(brandlist, header=None, names=['word'])
 
     # Convert brands in brand list to lowercase
     brands.word = brands.word.str.lower()
 
     # Extract a sample of reviews to generate training/validation/test data from
-    sample = pd.DataFrame(np.random.randn(kwargs['sample_size']))
+    sample = reviews.sample(n=sample_size)
 
     # Convert reviews to format relevant for spacy training
-	for r, i in sample.iterrows():
-	    brands = []
-	    for brand in brandlist.word:
-	        text = i.text.lower()
-	        start_index = 0
-	        while start_index < len(text):
-	            start_index = text.find(brand, start_index)
-	            end_index = start_index + len(brand)
-	            if start_index == -1:
-	                break
-	            if not text[start_index-1].isalpha() and (end_index == len(text) or not text[end_index].isalpha()):
-	                brands.append((start_index, end_index, "PRODUCT"))
-	            start_index += len(brand)
-	    train_data.append((i.review_id, i.text, brands))
+    print("   ===> CONVERTING DATA FOR SPACY")
+    for r, i in sample.iterrows():
+        brands_tmp = []
+        for brand in brands.word:
+            text = i.text.lower()
+            start_index = 0
+            while start_index < len(text):
+                start_index = text.find(brand, start_index)
+                end_index = start_index + len(brand)
+                if start_index == -1:
+                    break
+                if not text[start_index-1].isalpha() and (end_index == len(text) or not text[end_index].isalpha()):
+                    brands_tmp.append((start_index, end_index, "PRODUCT"))
+                start_index += len(brand)
+        train_data.append((i.review_id, i.text, brands_tmp))
 
-	result = pd.DataFrame(train_data, columns=['review_id', 'text', 'entities'])
-    
+    result = pd.DataFrame(train_data, columns=['review_id', 'text', 'entities'])
+
     # Split processed data into train/validation/test sets
-	train_validation, test = train_test_split(result, test_size=test_size)
-	train, validation = train_test_split(train_validation, test_size=validation_size / (1-test_size))
+    ("   ===> SPLITTING INTO TRAIN/VALIDATION/TEST SETS")
+    train_validation, test = train_test_split(result, test_size=test_size)
+    train, validation = train_test_split(train_validation, test_size=validation_size / (1-test_size))
 
-	# Output to CSV in data folder
-	train.to_csv('../data/train.csv')
-	validation.to_csv('../data/validation.csv')
-	test.to_csv('../data/test.csv')
+    # Output to CSV in data folder
+    train.to_csv('../data/train.csv')
+    validation.to_csv('../data/validation.csv')
+    test.to_csv('../data/test.csv')
 
     print("==> DATASETS GENERATED")
+    
+    return train, validation, test
 
 
 def train(**kwargs):
