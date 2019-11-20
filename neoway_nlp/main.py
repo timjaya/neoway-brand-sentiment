@@ -36,7 +36,7 @@ def preprocess(comments, brandlist, sample_size=20000, validation_size=0.1,
     brands = pd.read_csv(brandlist, header=None, names=['word'])
 
     # Convert brands in brand list to lowercase
-    brand.word = brand.word.str.lower()
+    brands.word = brands.word.str.lower()
 
     # Extract a sample of reviews to generate training/validation/test data from
     sample = pd.DataFrame(np.random.randn(kwargs['sample_size']))
