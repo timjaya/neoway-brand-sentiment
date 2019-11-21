@@ -4,7 +4,7 @@ from pandas import pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-def preprocess(comments, brandlist, sample_size=20000, validation_size=0.1, 
+def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1, 
 	test_size=0.25, **kwargs):
     """Function that will generate the dataset for your model. It can
     be the target population, training or validation dataset. You can
@@ -31,24 +31,19 @@ def preprocess(comments, brandlist, sample_size=20000, validation_size=0.1,
     """
     print("==> GENERATING DATASETS FOR TRAINING YOUR MODEL")
 
-    # Import Yelp reviews and brand list
-    print("   ===> IMPORTING REVIEWS")
-    reviews = pd.read_json(comments, lines=True)
-    print("   ===> IMPORTING BRAND LIST")
-    brands = pd.read_csv(brandlist, header=None, names=['word'])
-
     # Convert brands in brand list to lowercase
-    brands.word = brands.word.str.lower()
+    brandlist.word = brandlist.word.str.lower()
 
     # Extract a sample of reviews to generate training/validation/test data from
     sample = reviews.sample(n=sample_size)
 
     # Convert reviews to format relevant for spacy training
     print("   ===> CONVERTING DATA FOR SPACY")
-    for r, i in sample.iterrows():
+    train_data = []
+    for index, row in sample.iterrows():
         brands_tmp = []
-        for brand in brands.word:
-            text = i.text.lower()
+        for brand in brandlist.word:
+            text = row.text.lower()
             start_index = 0
             while start_index < len(text):
                 start_index = text.find(brand, start_index)
@@ -62,7 +57,7 @@ def preprocess(comments, brandlist, sample_size=20000, validation_size=0.1,
                         brands_tmp.append((start_index, end_index, "ESTABLISHMENT"))
 		
                 start_index += len(brand)
-        train_data.append((i.review_id, i.text, brands_tmp))
+        train_data.append((row.review_id, row.text, brands_tmp))
 
     result = pd.DataFrame(train_data, columns=['review_id', 'text', 'entities'])
 
