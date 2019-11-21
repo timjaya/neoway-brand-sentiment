@@ -5,28 +5,23 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1, 
-	test_size=0.25, **kwargs):
+               test_size=0.25, **kwargs):
     """Function that will generate the dataset for your model. It can
     be the target population, training or validation dataset. You can
     do in this step as well do the task of Feature Engineering.
-
     Input: Yelp dataset
     Output: train/test CSV for ER model training
-
     NOTE 
     ----
     config.data_path: workspace/data
-
     You should use workspace/data to put data to working on.  Let's say
     you have workspace/data/iris.csv, which you downloaded from:
     https://archive.ics.uci.edu/ml/datasets/iris. You will generate
     the following:
-
     + workspace/data/test.csv
     + workspace/data/train.csv
     + workspace/data/validation.csv
     + other files
-
     With these files you can train your model!
     """
     print("==> GENERATING DATASETS FOR TRAINING YOUR MODEL")
@@ -51,11 +46,11 @@ def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1,
                 if start_index == -1:
                     break
                 if not text[start_index-1].isalpha() and (end_index == len(text) or not text[end_index].isalpha()):
-		    if brand not in ['place', 'restaurant', 'cafe', 'establishment', 'diner']:
-                    	brands_tmp.append((start_index, end_index, "PRODUCT"))
+                    if brand not in ['place', 'restaurant', 'cafe', 'establishment', 'diner']:
+                        brands_tmp.append((start_index, end_index, "PRODUCT"))
                     else:
                         brands_tmp.append((start_index, end_index, "ESTABLISHMENT"))
-		
+
                 start_index += len(brand)
         train_data.append((row.review_id, row.text, brands_tmp))
 
@@ -67,9 +62,9 @@ def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1,
     train, validation = train_test_split(train_validation, test_size=validation_size / (1-test_size))
 
     # Output to CSV in data folder
-    train.to_csv('../workspace/data/train.csv')
-    validation.to_csv('../workspace/data/validation.csv')
-    test.to_csv('../workspace/data/test.csv')
+    train.to_csv('../data/train.csv')
+    validation.to_csv('../data/validation.csv')
+    test.to_csv('../data/test.csv')
 
     print("==> DATASETS GENERATED")
     
