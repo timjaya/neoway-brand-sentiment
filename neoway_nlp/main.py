@@ -62,7 +62,7 @@ def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1,
     result = pd.DataFrame(train_data, columns=['review_id', 'text', 'entities'])
 
     # Split processed data into train/validation/test sets
-    ("   ===> SPLITTING INTO TRAIN/VALIDATION/TEST SETS")
+    print("   ===> SPLITTING INTO TRAIN/VALIDATION/TEST SETS")
     train_validation, test = train_test_split(result, test_size=test_size)
     train, validation = train_test_split(train_validation, test_size=validation_size / (1-test_size))
 
