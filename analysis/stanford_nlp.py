@@ -8,8 +8,6 @@ import subprocess
 import json
 import numpy as np
 
-git_repo = os.path.join(os.path.dirname(os.path.dirname(__file__)))
-
 class StanfordNLP:
     def __init__(self, 
                  host='http://localhost', 
@@ -20,14 +18,16 @@ class StanfordNLP:
         
         
         if sys.platform == 'win32':
-            command = git_repo[0:2] + " && chdir " + git_repo + " && chdir " + folder_name + ' && java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -annotators "tokenize,ssplit,pos,lemma,parse,sentiment" -sentiment.threads 8 -port 9000 -timeout 30000'
+            git_repo = os.path.join(os.path.dirname(os.path.dirname(__file__)))
+            command = git_repo[0:2] + " && chdir " + git_repo + " && chdir " + folder_name + ' && java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -annotators "tokenize,ssplit,pos,lemma,parse,sentiment" -sentiment.threads 8 -port ' + str(port) + ' -timeout 30000'
             subprocess.Popen(command, 
                             shell=True,
                             stdin=None, 
                             stdout=None, 
                             stderr=None)
-        elif sys.platform == 'linux':
-            command = git_repo[0:2] + "; cd " + git_repo + "; cd " + folder_name + '; java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -annotators "tokenize,ssplit,pos,lemma,parse,sentiment" -sentiment.threads 8 -port 9000 -timeout 30000'
+        elif sys.platform == 'darwin':
+            git_repo = os.path.join(os.path.dirname(os.path.abspath(__file__)))
+            command = "cd " + git_repo + "; cd .. " + "; cd " + folder_name + '; java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -annotators "tokenize,ssplit,pos,lemma,parse,sentiment" -sentiment.threads 8 -port ' + str(port) + ' -timeout 30000'
             subprocess.Popen(command, 
                             shell=True,
                             stdin=None, 
@@ -96,8 +96,14 @@ class StanfordNLP:
                                  shell=True)
             print("Host terminated")
             
-        elif sys.platform == 'linux':
-            pass
+        elif sys.platform == 'darwin':
+            process_str = subprocess.check_output("ps -ax | grep StanfordCoreNLPServer | awk '{print $1}'", shell=True).decode()
+            process_num = process_str.split()
+            for pid in process_num:
+                command = 'kill ' + str(pid)
+                subprocess.Popen(command, shell=True)
+            print("Host terminated")
+
     
     def stanford_sentiment(self, entity_with_clause):
         entity_with_sentiment = []
@@ -124,7 +130,7 @@ class StanfordNLP:
 if __name__ == '__main__':
     sNLP = StanfordNLP()
     sample_reviews = pd.read_json(git_repo + "/sample_data/reviews_1000.json", lines = True)
-    reviews = [i for i in sample_reviews['text']][0:800]
+    reviews = [i for i in sample_reviews['text']][0:700]
     # res = sNLP.annotate(reviews)    
     res2 = sNLP.parse(reviews)
     # print(len(res))
