@@ -6,3 +6,10 @@ NER/spacy_train.csv
 data/restaurant_reviews_1900k.json
 stanford-corenlp-full-2018-10-05/
 analysis/Modular Code.ipynb
+Untitled.ipynb
+name_convention.txt
+main_run.py
+analysis/Untitled1.ipynb
+analysis/spacy_train.ipynb
+analysis/delete_this.py
+analysis/create_test_sentiment.ipynb
