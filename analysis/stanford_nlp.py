@@ -7,6 +7,8 @@ import multiprocessing
 import subprocess
 import json
 import numpy as np
+import math
+import time
 
 class StanfordNLP:
     def __init__(self, 
@@ -59,11 +61,35 @@ class StanfordNLP:
         results = Parallel(n_jobs=self.num_cores)(delayed(self.nlp.ner)(i) for i in sentences)
         return results
     
+    def _create_batches(self, sentences):
+        # Returns a list of list
+        n = math.ceil(len(sentences) / 200)
+        sentences_list = []
+        for i in range(n):
+            fix = 0
+            if i == n-1:
+                fix = len(sentences) % 200
+            sentences_list.append(sentences[200 * i:(200 * (i+1)-fix)])
+        return sentences_list
+    
     def _internal_parse(self, sentence):
         return self.nlp.parse(sentence)
     
     def parse(self, sentences):
-        results = Parallel(n_jobs=self.num_cores)(delayed(self._internal_parse)(i) for i in sentences)
+        # If number of sentences exceeds 200, we break it down into chunks of
+        # 500 sentences
+        if len(sentences) > 200:
+            sentences_list = self._create_batches(sentences)
+            results = []
+            for sentence_group in sentences_list:
+                print(len(sentence_group))
+                result_temp = Parallel(n_jobs=self.num_cores,
+                                       verbose=10)(delayed(self._internal_parse)(i) for i in sentence_group)
+                results += result_temp
+                time.sleep(1)
+        else:
+            results = Parallel(n_jobs=self.num_cores,
+                               verbose=10)(delayed(self._internal_parse)(i) for i in sentences)
         return results
 
     def dependency_parse(self, sentences):
@@ -113,7 +139,6 @@ class StanfordNLP:
             entity_with_sentiment.append((entity, sentiment))
         return entity_with_sentiment
     
-    
     @staticmethod
     def tokens_to_dict(_tokens):
         tokens = defaultdict(dict)
@@ -127,14 +152,19 @@ class StanfordNLP:
         return tokens
 
 # Example
+"""
 if __name__ == '__main__':
     sNLP = StanfordNLP()
+    git_repo = os.path.join(os.path.dirname(os.path.dirname(__file__)))
     sample_reviews = pd.read_json(git_repo + "/sample_data/reviews_1000.json", lines = True)
-    reviews = [i for i in sample_reviews['text']][0:700]
-    # res = sNLP.annotate(reviews)    
+    reviews = [i for i in sample_reviews['text']]
+    # res = sNLP.annotate(reviews)
+    start_time = time.time()
     res2 = sNLP.parse(reviews)
+    end_time = time.time()
+    print(end_time - start_time)
     # print(len(res))
     print(len(res2))
     sNLP.kill_host()
-
+"""
 
