@@ -3,6 +3,10 @@ from neoway_nlp import config
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
+from tqdm.notebook import tqdm
+from collections import defaultdict
+import spacy
+from runPrediction import prediction
 
 def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1, 
                test_size=0.25, **kwargs):
@@ -142,7 +146,7 @@ def predict(input_data):
 
     # 1. Load saved ER Model using spacy.load
     # 2. Predict entities for each input data
-
+    
     # TODO: Predict Sentiments of those entities using Sentiment Analysis
     # input: str of comment text, list of entities
     # output: list of tuples with str and score e.g. [('pasta', 0.3612)]
@@ -154,7 +158,11 @@ def predict(input_data):
     # nlp.stop_server()
 
     # TODO: return result
-
+    
+    runPrediction = prediction(input_data)
+    result = runPrediction.defaultPredict()
+    return result
+    
 # Run all pipeline sequentially for training, create pickled models and subset data
 def run(**kwargs):
     """Run the complete pipeline of the model.
