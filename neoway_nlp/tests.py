@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 import unittest
 from main import preprocess
 
-class TestPreprocess(unittest.TestCase):
+class TestProgram(unittest.TestCase):
 
     reviews = pd.read_json('../data/restaurant_reviews_500.json', lines=True)
     brandlist = pd.read_csv('../analysis/wordnet_db/wordnet_food_beverages_list.csv', header=None, names=['word'])
