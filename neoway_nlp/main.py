@@ -11,6 +11,13 @@ def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1,
     do in this step as well do the task of Feature Engineering.
     Input: Yelp dataset
     Output: train/test CSV for ER model training
+    Parameters:
+    - reviews: pandas dataframe of reviews
+    - brandlist: pandas dataframe containing list of products/brands
+    - sample_size: total number of reviews to subset
+    - validation_size: proportion of total sample_size to validate on
+    - test_size: proportion of total sample_size that will serve as the test set
+    
     NOTE 
     ----
     config.data_path: workspace/data
