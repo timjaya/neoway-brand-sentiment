@@ -9,7 +9,7 @@ import spacy
 from runPrediction import prediction
 
 def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1, 
-               test_size=0.25, **kwargs):
+               test_size=0.25, verbose=0, **kwargs):
     """Function that will generate the dataset for your model. It can
     be the target population, training or validation dataset. You can
     do in this step as well do the task of Feature Engineering.
@@ -35,7 +35,8 @@ def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1,
     + other files
     With these files you can train your model!
     """
-    print("==> GENERATING DATASETS FOR TRAINING YOUR MODEL")
+    if verbose == 1:
+      print("==> GENERATING DATASETS FOR TRAINING YOUR MODEL")
 
     # Convert brands in brand list to lowercase
     brandlist.word = brandlist.word.str.lower()
@@ -44,7 +45,8 @@ def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1,
     sample = reviews.sample(n=sample_size)
 
     # Convert reviews to format relevant for spacy training
-    print("   ===> CONVERTING DATA FOR SPACY")
+    if verbose == 1:
+      print("   ===> CONVERTING DATA FOR SPACY")
     train_data = []
     for index, row in sample.iterrows():
         brands_tmp = []
@@ -68,7 +70,8 @@ def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1,
     result = pd.DataFrame(train_data, columns=['review_id', 'text', 'entities'])
 
     # Split processed data into train/validation/test sets
-    print("   ===> SPLITTING INTO TRAIN/VALIDATION/TEST SETS")
+    if verbose == 1:
+      print("   ===> SPLITTING INTO TRAIN/VALIDATION/TEST SETS")
     train_validation, test = train_test_split(result, test_size=test_size)
     train, validation = train_test_split(train_validation, test_size=validation_size / (1-test_size))
 
@@ -76,8 +79,9 @@ def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1,
     train.to_csv('../data/train.csv')
     validation.to_csv('../data/validation.csv')
     test.to_csv('../data/test.csv')
-
-    print("==> DATASETS GENERATED")
+    
+    if verbose == 1:
+      print("==> DATASETS GENERATED")
     
     return train, validation, test
 
