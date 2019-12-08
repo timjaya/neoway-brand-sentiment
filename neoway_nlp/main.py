@@ -3,14 +3,25 @@ from neoway_nlp import config
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
+from tqdm.notebook import tqdm
+from collections import defaultdict
+import spacy
+from runPrediction import prediction
 
 def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1, 
-               test_size=0.25, **kwargs):
+               test_size=0.25, verbose=0, **kwargs):
     """Function that will generate the dataset for your model. It can
     be the target population, training or validation dataset. You can
     do in this step as well do the task of Feature Engineering.
     Input: Yelp dataset
     Output: train/test CSV for ER model training
+    Parameters:
+    - reviews: pandas dataframe of reviews
+    - brandlist: pandas dataframe containing list of products/brands
+    - sample_size: total number of reviews to subset
+    - validation_size: proportion of total sample_size to validate on
+    - test_size: proportion of total sample_size that will serve as the test set
+    
     NOTE 
     ----
     config.data_path: workspace/data
@@ -24,7 +35,8 @@ def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1,
     + other files
     With these files you can train your model!
     """
-    print("==> GENERATING DATASETS FOR TRAINING YOUR MODEL")
+    if verbose == 1:
+      print("==> GENERATING DATASETS FOR TRAINING YOUR MODEL")
 
     # Convert brands in brand list to lowercase
     brandlist.word = brandlist.word.str.lower()
@@ -33,7 +45,8 @@ def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1,
     sample = reviews.sample(n=sample_size)
 
     # Convert reviews to format relevant for spacy training
-    print("   ===> CONVERTING DATA FOR SPACY")
+    if verbose == 1:
+      print("   ===> CONVERTING DATA FOR SPACY")
     train_data = []
     for index, row in sample.iterrows():
         brands_tmp = []
@@ -57,7 +70,8 @@ def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1,
     result = pd.DataFrame(train_data, columns=['review_id', 'text', 'entities'])
 
     # Split processed data into train/validation/test sets
-    print("   ===> SPLITTING INTO TRAIN/VALIDATION/TEST SETS")
+    if verbose == 1:
+      print("   ===> SPLITTING INTO TRAIN/VALIDATION/TEST SETS")
     train_validation, test = train_test_split(result, test_size=test_size)
     train, validation = train_test_split(train_validation, test_size=validation_size / (1-test_size))
 
@@ -65,8 +79,9 @@ def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1,
     train.to_csv('../data/train.csv')
     validation.to_csv('../data/validation.csv')
     test.to_csv('../data/test.csv')
-
-    print("==> DATASETS GENERATED")
+    
+    if verbose == 1:
+      print("==> DATASETS GENERATED")
     
     return train, validation, test
 
@@ -142,7 +157,7 @@ def predict(input_data):
 
     # 1. Load saved ER Model using spacy.load
     # 2. Predict entities for each input data
-
+    
     # TODO: Predict Sentiments of those entities using Sentiment Analysis
     # input: str of comment text, list of entities
     # output: list of tuples with str and score e.g. [('pasta', 0.3612)]
@@ -154,7 +169,11 @@ def predict(input_data):
     # nlp.stop_server()
 
     # TODO: return result
-
+    
+    runPrediction = prediction(input_data)
+    result = runPrediction.defaultPredict()
+    return result
+    
 # Run all pipeline sequentially for training, create pickled models and subset data
 def run(**kwargs):
     """Run the complete pipeline of the model.
