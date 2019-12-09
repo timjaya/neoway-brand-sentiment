@@ -15,11 +15,15 @@ Mark which tasks have been performed
 - [ ] **Acceptance**: this model report has been accepted by the Data Science Manager. State name and date.
 
 ## Summary
-> Provide a description of your model, max 3 lines.
 
-The model classifies the type of cuisine of a restaurant. It is based on regular expressions and rules.
+The model takes in a Yelp review, detects entities mentioned in the review, and performs sentiment analysis towards each of these entities.
 
-### Usage
+It completes the task above in three steps:
+1. Entity Recognition (Spacy)
+2. Parsing to determine relevant context per entity (Benepar, Spacy, Stanford NLP)
+3. Sentiment Analysis, taking in relevant context from step 2 (VADER, Stanford NLP)
+
+### Usage ________TIM__________
 > Provide a reproducible pipeline to run your model
 
 1. clone the repository
@@ -32,16 +36,15 @@ python -m neoway_nlp on_my_data.csv save_to_my_file.csv
 ```
 
 ### Output
-> Provide a technical description of your model's output, including its domain.
 
-The model outputs a list of strings from the list `output_set`
+The model inputs a review (string). The output can be either the sentiment towards individual entities entities or the relevant portions of the review that discusses the entity in question. This output is in the form of a list of tuples - the first element in the tuple is the entity and the second is either the sentiment/context.
 ```python
-output_set = ['','pizza','mexicano','bar','churrascaria']
-output_example1 = [''] #none
-output_example2 = ['pizza','churrascaria']
+input = 'I loved the mac and cheese in the restaurant, but I hated that they only offered cheap beer such as Miller Lite'
+output_example1 = [('mac and cheese', 0.5994), ('beer', -0.6369)]
+output_example2 = [('mac and cheese', 'I loved the mac and cheese in the restaurant'), ('beer', 'I hated that they only offered cheap beer such as Miller Lite')]
 ```
 
-#### Metadata
+#### Metadata ________TIM__________
 > Your model's metada should be provided in a machine-readable
 > format (e.g. a json file) and include the following items:
 
@@ -56,60 +59,70 @@ output_example2 = ['pizza','churrascaria']
 
 Make sure that the final consumer of your model can make use of your metadata.
 
-#### Coverage
+#### Coverage ________TIM/FERNANDO__________
 
 > Describe the population covered by your model in comparison to the
 > target population.
 
-### Performance Metrics
-Provide any metrics used and their value in tables.
+## Pre-processing ________FERNANDO__________
+
+(Talk about filtering out Reviews, etc)
+
+We don't require a preprocessing of the reviews themselves. Our model is able to take in the original Yelp review and perform targeted sentiment analysis in a robust manner.
+
+## Modeling
+
+A trained `Spacy` model is used to perform entity recognition. We use a list of food & beverage nouns from WordNet as our training data. Once trained, the `Spacy` model is able to generalize to new entities not in the training dataset.
+
+We have several choices for parsing. We compared several parsing methods, namely `Benepar`'s constituency parser
+and `Spacy`'s dependency parser. In our test cases, constituency parsers perform better than dependency parsers.
+
+We also have several choices for Sentiment Analyzers. We tried both `VADER` and `Stanford NLP`. `VADER` performed best due to its sensible labelling of neutral sentences, and works especially well with Rule 2, as described below.
+
+### Performance Metrics ________CHARLENE__________
+
+#Entity Recognition
 
 | metric    | `''`   | `'pizza'`   | `'mexicano'`   | `'bar'`   | `'churrascaria'` |
 | --------- | ------ | ----------- | -------------- | --------- | ---------------- |
 | precision | .98    | .8          | .9             | .95       | .99              |
 | recall    | .98    | .8          | .9             | .95       | .99              |
 
-## Pre-processing
-> Motivate each pre-processing used in one line.
+We can evaluate the performance of Sentiment Analysis models, Parsing Rules, etc using the validation method, described in our report. ______TIM_____
 
-1. applied log-transform to 'variable': it presented a skewed behavior.
-2. normalized output variable: relative order was more relevant for the model.
 
-## Feature selection
-> Motivate any feature selection method that has been used and list/link
-> the features used in the model.
+#Comparison of Sentiment Analysis Models
 
-* feature importance on a boosted tree: out of the 1000 features, 100 were selected.
+| Sentiment Analysis | `Rank correlation score`   | 
+| ------------------ | -------------------------- | 
+| VADER              | .24                        |
+| Stanford NLP       | -.17                       |
 
-### Features used
-Provide a list or link with a list to all features and raw data that
-have been used. Please make notice in case some of these features are
-not readily available in the features store
+#Comparison of Parsing Rules ______TIM_____
 
-## Modeling
-> Describe the type of model used.
+Detailed description of each rule can be found in the report. The best performing rule is Rule 2, which involves traversing up a constituency tree until we reach a context with non-neutral sentiment.
 
-A `RandomForestClassifier` from `scikit-learn` was used. This model serves our purpose to perform multi-label classification and has shown satisfactory performance.
+| Sentiment Analysis | `Rank correlation score`   | 
+| ------------------ | -------------------------- | 
+| Rule 1             | .25                        |
+| Rule 2             | .58                        |
+| Rule 3             | .51                        |
+| Rule 4             | .40                        |
+| Rule 5             | .23                        |
+| Rule 6             | .24                        |
 
-### Model selection
-> Describe any model selection that has been performed.
 
-Both a `DecisionTreeClassifier` and `RadomForestClassifier` have been used. The `DecisionTree` model was not able to achieve satisfactory predictions for the class `churrascaria`. Therefore we kept the `RandomForestClassifer`. The chosen model is more complex to train and execute but for our application this is not critical.
+### Model selection & validation
 
-### Model validation
-> Motivate your model validation strategy.
+We selected our models using a validation technique outlined below, taking advantage of the fact that sentiment of reviews are quasi-labelled by the star ratings. Please see our report for a justification of our validation technique.
 
-1. The dataset was divided into training and validation (80/20)
-2. A stratified sampling was used to reproduce the characteristics of the deploy dataset.
-3. A 10-fold strategy was used
-4. See the Accuracy section of the model description for the achieved accuracy.
+1. A subset of restaurants with sufficient reviews is filtered.(Contains > 10 entities each with > 30 reviews)
+2. For each of the entities above, calculate the average star rating. Rank the sentiment of each entity using this average score. This will be the 'true' ranking.
+3. High vs low variance ___ TIM_____
+4. Calculate the average sentiment for each entity using our model (with a particular Sentiment Analyzer, a particular parsing rule). Rank the sentiment of each entity using this average score. This will be our model-generated ranking.
+5. Calculate the rank correlation of the rankings in step 2 and 4. Repeat using a different model in step 4 to create comparisons between models.
 
-### Model optimization
-> Motivate your choice of hyperparameters and report the training results.
+Note that we are not using the Yelp dataset to train our models, only to validate. Hence, no train-test splits are needed and we use the entire dataset for validation.
 
-* The hyper-parameters `alpha`, `omega`, `beta` were optimized using PSO.
-
-Provide a figure with the training decades if applicable.
-
-## Additional resources
+## Additional resources ___TIM____
 > Provide links to additional documentation and presentations regarding your model.
