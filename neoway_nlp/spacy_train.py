@@ -1,3 +1,15 @@
+from __future__ import unicode_literals, print_function
+import ast 
+import plac
+import random
+from pathlib import Path
+import spacy
+from spacy.util import minibatch, compounding
+import time
+from sklearn.model_selection import train_test_split
+import pandas as pd
+import numpy as np
+
 df = pd.read_csv("spacy_train_clean_10k.csv")
 df['entities_clean']=[ast.literal_eval(i) for i in df['entities']]
 #train_df, test_df = train_test_split(df, test_size = .2)
