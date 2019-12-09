@@ -1,0 +1,10 @@
+analysis
+data
+docs
+workspace
+neoway_virtual
+neoway_nlp.egg_info
+.ipynb_checkpoints
+.vscode
+*.csv
+*.md
