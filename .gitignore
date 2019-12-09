@@ -7,3 +7,5 @@ stanford_corenlp-full-2018-10-05/
 analysis/Modular Code.ipynb
 neoway_nlp.egg-info
 neoway_virtual
+.vscode
+.ipynb_checkpoints
