@@ -10,11 +10,6 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("spacy_train_clean_10k.csv")
-df['entities_clean']=[ast.literal_eval(i) for i in df['entities']]
-#train_df, test_df = train_test_split(df, test_size = .2)
-all_train, therest = train_test_split(df, train_size=1000)
-train_df, test_df = train_test_split(all_train, test_size=.2)
 
 def create_train_data(df):
   train_data = []
@@ -42,14 +37,9 @@ def create_test_data(df):
     test_data.append((df['text'].iloc[i], entity_dict))
   return test_data
 
-# new entity label
-LABEL = "PRODUCT"
-
-TRAIN_DATA = create_train_data(train_df)
-TEST_DATA = create_test_data(test_df)
 
 # new entity label
-def train(train_data=TRAIN_DATA, test_data=TEST_DATA, model='en_core_web_sm', new_model_name="product", output_dir='./ermodel', n_iter=1):
+def train(train_data, test_data, LABEL, model='en_core_web_sm', new_model_name="product", output_dir='./ermodel', n_iter=1):
     """Set up the pipeline and entity recognizer, and train the new entity."""
     random.seed(0)
     if model is not None:
@@ -122,4 +112,22 @@ def train(train_data=TRAIN_DATA, test_data=TEST_DATA, model='en_core_web_sm', ne
             print(ent.label_, ent.text)
     return nlp
 
-model = train()
+
+def run_training(file_name = "../data/spacy_train_clean_10k.csv", 
+                 output_dir = './ermodel'):
+    df = pd.read_csv(file_name)
+    df['entities_clean']=[ast.literal_eval(i) for i in df['entities']]
+    #train_df, test_df = train_test_split(df, test_size = .2)
+    all_train, therest = train_test_split(df, train_size=1000)
+    train_df, test_df = train_test_split(all_train, test_size=.2)
+    
+    # new entity label
+    LABEL = "PRODUCT"
+    
+    TRAIN_DATA = create_train_data(train_df)
+    TEST_DATA = create_test_data(test_df)
+
+    
+    model = train(TRAIN_DATA, TEST_DATA, LABEL=LABEL, output_dir=output_dir)
+
+

@@ -1,5 +1,5 @@
 import fire
-from neoway_nlp import config
+# import config
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -7,6 +7,9 @@ from tqdm.notebook import tqdm
 from collections import defaultdict
 import spacy
 from runPrediction import prediction
+from spacy_train import run_training
+
+
 
 def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1, 
                test_size=0.25, verbose=0, **kwargs):
@@ -103,7 +106,8 @@ def train(**kwargs):
 
     # TODO: Load data from workspace/data
     # TODO: Save trained model to workspace/models
-
+    run_training()
+    
 
 def metadata(**kwargs):
     """Generate metadata for model governance using testing!
@@ -173,7 +177,21 @@ def predict(input_data):
     runPrediction = prediction(input_data)
     result = runPrediction.defaultPredict()
     return result
-    
+
+
+def validate(result):
+    """
+    The input is the list of entities with an sentiment score outputted by
+    the prediction function above.
+
+    Returns
+    -------
+    Average correlation score
+
+    """
+    pass
+
+
 # Run all pipeline sequentially for training, create pickled models and subset data
 def run(**kwargs):
     """Run the complete pipeline of the model.
