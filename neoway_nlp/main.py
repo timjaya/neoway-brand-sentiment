@@ -13,9 +13,8 @@ from spacy_train import run_training
 
 def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1, 
                test_size=0.25, verbose=0, **kwargs):
-    """Function that will generate the dataset for your model. It can
-    be the target population, training or validation dataset. You can
-    do in this step as well do the task of Feature Engineering.
+    """Function that generates the dataset for Spacy training. 
+    
     Input: Yelp dataset
     Output: train/test CSV for ER model training
     Parameters:
@@ -184,12 +183,18 @@ def validate(result):
     The input is the list of entities with an sentiment score outputted by
     the prediction function above.
 
+    NOTE
+    -----------
+    Prints out intermediary results
+
     Returns
-    -------
-    Average correlation score
+    -----------
+    
+    - list of correlation scores
 
     """
     pass
+
 
 
 # Run all pipeline sequentially for training, create pickled models and subset data

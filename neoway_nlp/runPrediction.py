@@ -20,10 +20,6 @@ class prediction:
                  parse_package = "benepar",
                  model_dir = "ermodel"):
         
-        # self.spacy_train = spacy_train
-        # self.review = spacy_train['text']
-        # self.entities = spacy_train['entities']
-        
         self.sentiment_package = sentiment_package
         self.nlp = spacy.load(model_dir)
         self.input_data = input_data
@@ -31,15 +27,15 @@ class prediction:
         
         if parse_package == 'benepar':
             try:
-                self.parser = benepar.Parser("benepar_en2")
+                self.parser = benepar.Parser("benepar_en2") 
             except LookupError:
                 benepar.download('benepar_en2')
+                self.parser = benepar.Parser("benepar_en2")
         elif parse_package == 'stanford':   
             pass
         else:
             raise Exception('incorrect parse package')
         
-    # Helper function
     def _remove_nestings(self, lst): 
         output = []
         

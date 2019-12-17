@@ -91,7 +91,7 @@ def train(train_data, test_data, LABEL, model='en_core_web_sm', new_model_name="
       for ent in doc.ents:
           print(ent.label_, ent.text)
 
-    # COMMENT: Abstract to another function
+    # TODO: Abstract to another function
     # save model to output directory
     if output_dir is not None:
         output_dir = Path(output_dir)
