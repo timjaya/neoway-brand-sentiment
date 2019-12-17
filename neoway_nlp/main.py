@@ -6,8 +6,8 @@ from sklearn.model_selection import train_test_split
 from tqdm.notebook import tqdm
 from collections import defaultdict
 import spacy
-from runPrediction import prediction
-from spacy_train import run_training
+from .runPrediction import prediction
+from .spacy_train import run_training
 
 
 
@@ -78,9 +78,9 @@ def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1,
     train, validation = train_test_split(train_validation, test_size=validation_size / (1-test_size))
 
     # Output to CSV in data folder
-    train.to_csv('../data/train.csv')
-    validation.to_csv('../data/validation.csv')
-    test.to_csv('../data/test.csv')
+    train.to_csv('../workspace/data/train.csv')
+    validation.to_csv('../workspace/data/validation.csv')
+    test.to_csv('../workspace/data/test.csv')
     
     if verbose == 1:
       print("==> DATASETS GENERATED")
