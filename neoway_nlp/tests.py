@@ -7,7 +7,7 @@ import spacy
 class TestProgram(unittest.TestCase):
 
     reviews = pd.read_json('../data/restaurant_reviews_500.json', lines=True)
-    brandlist = pd.read_csv('../analysis/wordnet_db/wordnet_food_beverages_list.csv', header=None, names=['word'])
+    brandlist = pd.read_csv('../data/wordnet_food_beverages_list.csv', header=None, names=['word'])
     
     
     def test_lengths(self):
