@@ -113,13 +113,16 @@ def train(train_data, test_data, LABEL, model='en_core_web_sm', new_model_name="
     return nlp
 
 
-def run_training(file_name = "../data/spacy_train_clean_10k.csv", 
-                 output_dir = './ermodel'):
+def run_training(file_name = "./workspace/data/train.csv", 
+                 output_dir = './workspace/models/er_model'):
+
+    print("==> CONFIGURING FORMAT FOR SPACY TRAINING")
+
     df = pd.read_csv(file_name)
     df['entities_clean']=[ast.literal_eval(i) for i in df['entities']]
     #train_df, test_df = train_test_split(df, test_size = .2)
-    all_train, therest = train_test_split(df, train_size=1000)
-    train_df, test_df = train_test_split(all_train, test_size=.2)
+    # all_train, therest = train_test_split(df, train_size=1000)
+    train_df, test_df = train_test_split(df, test_size=.2)
     
     # new entity label
     LABEL = "PRODUCT"
