@@ -1,7 +1,7 @@
 # example script to use the neoway_nlp
 
 import pandas as pd
-from neoway_nlp.runPrediction import Predictor
+from neoway_nlp.prediction import Predictor
 from neoway_nlp.main import preprocess, train, metadata_spacy, predict
 
 def test_preprocessing():
@@ -16,6 +16,8 @@ def test_preprocessing():
 
     # READ IN SUBSET DATA (10k)
 
+    # only read in reviews from restaurants, code to filter Yelp to restaurants can be found 
+    # in analysis/preprocess/filter_restaurants.py
     reviews = pd.read_csv('./workspace/data/restaurant_reviews_10k.csv')
     brandlist = pd.read_csv('./workspace/data/wordnet_food_beverages_list.csv', header=None, names=['word'])
     preprocess(reviews, brandlist, sample_size=2000, verbose=1)

@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 from collections import defaultdict
 import spacy
-from .runPrediction import Predictor
+from .prediction import Predictor
 from .spacy_train import run_training
 from .spacy_validate import evaluate_spacy
 import benepar
