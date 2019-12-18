@@ -3,6 +3,7 @@
 import pandas as pd
 from neoway_nlp.prediction import Predictor
 from neoway_nlp.main import preprocess, train, metadata_spacy, predict
+import unittest
 
 def test_preprocessing():
     # READ AND PREPROCESS DATA

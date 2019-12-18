@@ -1,13 +1,13 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import unittest
-from main import preprocess
+from neoway_nlp.main import preprocess
 import spacy
 
 class TestProgram(unittest.TestCase):
 
-    reviews = pd.read_json('../data/restaurant_reviews_500.json', lines=True)
-    brandlist = pd.read_csv('../data/wordnet_food_beverages_list.csv', header=None, names=['word'])
+    reviews = pd.read_json('./workspace/data/restaurant_reviews_500.json', lines=True)
+    brandlist = pd.read_csv('./workspace/data/wordnet_food_beverages_list.csv', header=None, names=['word'])
     
     
     def test_lengths(self):
@@ -18,7 +18,7 @@ class TestProgram(unittest.TestCase):
     
     
     def test_spacy(self):
-        model_dir = "../analysis/models"
+        model_dir = "./workspace/models/er_model"
         try:
             spacy_model = spacy.load(model_dir)
         except:
