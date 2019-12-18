@@ -58,11 +58,11 @@ def test_all_rules():
 # validate_end_to_end()
 
 if __name__ == "__main__":
-    # test_preprocessing()
-    # test_training()
-    # test_metadata_spacy()
-    # test_predict_single()
-    # test_predict()
+    test_preprocessing()
+    test_training()
+    test_metadata_spacy()
+    test_predict_single()
+    test_predict()
     test_all_rules()
 
 
