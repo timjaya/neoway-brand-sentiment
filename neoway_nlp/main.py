@@ -144,15 +144,32 @@ def metadata(**kwargs):
 
 def predict(input_data):
     """Predict: load the trained model and score input_data
+    
+    
+    Generates sentiment scores given a list of reviews using default settings.    
 
+    Args:
+        input_data: List of strings containing each review
+
+    Returns:
+        A list of list of tuples containing an entity and sentiment score pair
+        For exmaple:
+        
+        [[('mango', 0.6369), ('service', 0.8016)], 
+        [('buffet', -0.6639), ('dessert', -0.6639), ('Palace', 0.9072), 
+        ('place', 0.9661), ('table', -0.4417), ('food', 0.0), 
+        ('service', -0.0772), ('salad', 0.3182)]]
+        
+        
     NOTE
     ----
     As convention you should use predict/ directory
     to do experiments, like predict/input.csv.
+
     """
 
     print("==> PREDICT DATASET {}".format(input_data))
-
+    
 
     # TODO: Predict Entities Here using ER Model
     # input: str of comment text
