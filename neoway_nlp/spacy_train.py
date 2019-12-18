@@ -116,13 +116,13 @@ def train(train_data, test_data, LABEL, model='en_core_web_sm', new_model_name="
 def run_training(file_name = "./workspace/data/train.csv", 
                  output_dir = './workspace/models/er_model'):
 
-    print("==> CONFIGURING FORMAT FOR SPACY TRAINING")
+    print("   ==> CONFIGURING FORMAT FOR SPACY TRAINING")
 
     df = pd.read_csv(file_name)
     df['entities_clean']=[ast.literal_eval(i) for i in df['entities']]
     #train_df, test_df = train_test_split(df, test_size = .2)
-    # all_train, therest = train_test_split(df, train_size=1000)
-    train_df, test_df = train_test_split(df, test_size=.2)
+    all_train, _ = train_test_split(df, train_size=1000)
+    train_df, test_df = train_test_split(all_train, test_size=.2)
     
     # new entity label
     LABEL = "PRODUCT"
@@ -130,7 +130,8 @@ def run_training(file_name = "./workspace/data/train.csv",
     TRAIN_DATA = create_train_data(train_df)
     TEST_DATA = create_test_data(test_df)
 
-    
+    print("   ==> TRAINING...")
+
     model = train(TRAIN_DATA, TEST_DATA, LABEL=LABEL, output_dir=output_dir)
 
 

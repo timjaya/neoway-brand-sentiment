@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import nltk
 import collections
-from tqdm.notebook import tqdm
+from tqdm import tqdm
 from collections import defaultdict
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import benepar
@@ -13,16 +13,14 @@ import spacy
 from joblib import Parallel, delayed
 import multiprocessing
 
-class prediction:
+class Predictor:
     def __init__(self,
-                 input_data,
                  sentiment_package = "vader",
                  parse_package = "benepar",
-                 model_dir = "ermodel"):
+                 model_dir = "./workspace/models/er_model"):
         
         self.sentiment_package = sentiment_package
         self.nlp = spacy.load(model_dir)
-        self.input_data = input_data
         self.num_cores = multiprocessing.cpu_count()
         
         if parse_package == 'benepar':
@@ -456,24 +454,38 @@ class prediction:
         return result
     
     
-    def parallelize_predict(self):
-        entities_with_sentiment = Parallel(n_jobs=self.num_cores)(delayed(self._parallelize_default)(i) for i in self.input_data)
+    def parallelize_predict(self, input_data):
+        input_data = self.assert_list_form(input_data)
+        entities_with_sentiment = Parallel(n_jobs=self.num_cores)(delayed(self._parallelize_default)(i) for i in input_data)
         return entities_with_sentiment
     
-    
-    def defaultPredict(self):
+    # default using rule 2 for prediction
+    def defaultPredict(self, input_data):
         entities_with_sentiment = []
-        for review in self.input_data:
+
+        input_data = self.assert_list_form(input_data)
+
+        for review in tqdm(input_data):
             entities = self.get_entities(review)    
             result = self.rule_2(review, entities)
             entities_with_sentiment.append(result)
         return entities_with_sentiment
         
+    def assert_list_form(self, input_data):
+        if not isinstance(input_data, list):
+            input_data = [input_data]
+
+        assert isinstance(input_data, list)
+        assert isinstance(input_data[0], str) 
+
+        return input_data
     
-    def customPredict(self, rule_number=2):
+    def customPredict(self, input_data, rule_number=2):
         entities_with_sentiment = []
-        
-        for review in tqdm(self.input_data):
+
+        input_data = self.assert_list_form(input_data)
+
+        for review in tqdm(input_data):
             entities = self.get_entities(review)
             if rule_number == 1:
                 result = self.rule_1(review, entities)
@@ -501,24 +513,24 @@ class prediction:
         return entities_with_sentiment
     
     
-    def defaultValidate(predicted_scores):
-        # TODO: Finish writing validation function
+    # def defaultValidate(predicted_scores):
+    #     # TODO: Finish writing validation function
         
-        predicted_rankings = defaultdict(list)
-        for entity, scores in predicted_scores.items():
-            predicted_rankings['entity'] += [entity]
-            predicted_rankings['predicted_score'] += [np.mean(scores)]
+    #     predicted_rankings = defaultdict(list)
+    #     for entity, scores in predicted_scores.items():
+    #         predicted_rankings['entity'] += [entity]
+    #         predicted_rankings['predicted_score'] += [np.mean(scores)]
     
-        predicted_rankings = pd.DataFrame(predicted_rankings)
+    #     predicted_rankings = pd.DataFrame(predicted_rankings)
     
-        #### may not be necessary to do these castings
-        predicted_rankings['entity'] = predicted_rankings['entity'].astype(str)
-        true_rankings['entity'] = true_rankings['entity'].astype(str)
-        ####
+    #     #### may not be necessary to do these castings
+    #     predicted_rankings['entity'] = predicted_rankings['entity'].astype(str)
+    #     true_rankings['entity'] = true_rankings['entity'].astype(str)
+    #     ####
         
-        full_rankings = true_rankings.merge(predicted_rankings, how='left').fillna(0)
-        corr, pvalue = spearmanr(full_rankings.average_stars, full_rankings.predicted_score)
-        return corr
+    #     full_rankings = true_rankings.merge(predicted_rankings, how='left').fillna(0)
+    #     corr, pvalue = spearmanr(full_rankings.average_stars, full_rankings.predicted_score)
+    #     return corr
 
 
 

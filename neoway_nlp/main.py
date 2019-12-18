@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 from collections import defaultdict
 import spacy
-from .runPrediction import prediction
+from .runPrediction import Predictor
 from .spacy_train import run_training
 from .spacy_validate import evaluate_spacy
 import benepar
@@ -14,9 +14,7 @@ import matplotlib.pyplot as plt
 import ast
 from scipy.stats import spearmanr
 
-
-
-def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1, 
+def preprocess(reviews, brandlist, sample_size=2000, validation_size=0.1, 
                test_size=0.25, verbose=0, **kwargs):
     """Function that generates the dataset for Spacy training. 
     
@@ -94,7 +92,6 @@ def preprocess(reviews, brandlist, sample_size=20000, validation_size=0.1,
     
     return train, validation, test
 
-
 def train(**kwargs):
     """Function that will run your model, be it a NN, Composite indicator
     or a Decision tree, you name it.
@@ -115,7 +112,6 @@ def train(**kwargs):
     run_training()
 
     print("==> SPACY TRAINING COMPLETE!")
-    
 
 def metadata_spacy(**kwargs):
     """Generate metadata for model governance using testing!
@@ -152,145 +148,6 @@ def metadata_spacy(**kwargs):
 
     evaluate_spacy()
 
-def validate_end_to_end():
-
-    benepar.download("benepar_en2")
-    parser = benepar.Parser("benepar_en2")
-
-    example = "I just EASILY had the BEST lunch I've ever eaten!  It was THAT good!\n\nThe chicken tortilla soup was out of this world...light and delicate...fresh and HOT!!!\nI had two fish tacos with no tortilla.  One was a regular fish taco and the other was a beer battered fish taco.l\n\nThe fire roasted salsa was EASILY the best salsa I have ever had, too!\n\nThis place is a serious gem!  I could go there every single day!\n\nThanks guys!!"
-
-    print("   ==> READING SPACY MODEL")
-    model_dir = "./workspace/models/er_model"
-    nlp = spacy.load(model_dir)
-
-    def get_entities(nlp_model, text):
-        """
-        Input nlp_model and text, retrieve a list of unique entities from the text.
-        """
-        doc = nlp_model(text)
-        entities = set()
-        for ent in doc.ents:
-            if ent.label_ == "PRODUCT":
-                entities.add(ent.text)
-        return list(entities)
-
-    print("entity example: ")
-    print("TEXT: ", example)
-    print("ENTITIES: \n") 
-    example_entity_list = get_entities(nlp, example)
-    print(example_entity_list)
-
-    bus = pd.read_csv("./workspace/end_to_end_test_set.csv")
-
-    business_ids_similar_stars = bus.business_id.unique()
-
-    rule = 'rule_2'
-
-    correlation_scores = []
-
-    print("RULE: ", rule)
-    for bus_id in tqdm(business_ids_similar_stars):
-        print("Running on restaurant ", bus_id, "...")
-        subset = bus[bus.business_id == bus_id]
-        
-        # only get reviews with enough amount of text
-        reviews_subset = [review for review in subset.text if len(review) < 400]
-
-        print("Number of Reviews left after subset length: ", len(reviews_subset))
-        
-        # get set of entities for this particular restaurant,
-        # and count how many reviews each entity have
-        entities_with_count = defaultdict(int) 
-        review_entities = [] # extract entities for each review
-        print("Extracting entities from each review...")
-        for review in tqdm(reviews_subset):
-            entities = get_entities(nlp, review)
-
-            # add this review as a count to an entity
-            for ent in entities:
-                entities_with_count[ent.lower()] += 1
-
-            review_entities.append(entities)
-            
-        # only grab entities that have enough reviews
-        print("Filtering entities to have enough reviews...")
-        entities_with_enough_reviews = []
-        threshold = 30
-        for key, value in entities_with_count.items():
-            if value >= threshold:
-                entities_with_enough_reviews.append(key)
-                
-        # TRUE RANKINGS CALCULATION
-        # for each entity, average ratings
-        true_rankings = defaultdict(list)
-
-        print("Calculating Yelp Star Rankings... ")
-        for entity in entities_with_enough_reviews:
-            true_rankings['entity'] += [entity]
-            entity_reviews = subset[subset.text.str.contains(entity, case=False)]
-            true_rankings['average_stars'] += [np.mean(entity_reviews.stars)]
-
-        true_rankings = pd.DataFrame(true_rankings)
-        
-        # PREDICTION RANKING CALCULATION
-        print("Calculating Prediction Rankings...")
-        # Filter entities of each review to be from the entities_with_enough_review set
-        entity_filter = set(entities_with_enough_reviews)
-
-        filtered_entities = []
-
-        for entities in review_entities:
-            filtered = []
-            for ent in entities:
-                ent = ent.lower()
-                if ent in entity_filter:
-                    filtered.append(ent)
-            filtered_entities.append(filtered)
-
-        # perform sentiment analysis for each review with filtered entities above
-        predicted_scores = defaultdict(list)
-
-        from .main import predict
-
-        print("Performing sentiment analysis for each review... ")
-        for i, review in enumerate(tqdm(reviews_subset)):
-            entities = filtered_entities[i]
-
-        #     print(review)
-
-            scores = predict(review)
-            print(scores)
-            #, entities, parser = parser, sentiment_package='vader', rule=rule)
-
-            # save results 
-            for entity, score in scores:
-                predicted_scores[entity] += [score]
-
-        # create rankings from scores
-        predicted_rankings = defaultdict(list)
-        for entity, scores in predicted_scores.items():
-            predicted_rankings['entity'] += [entity]
-            predicted_rankings['predicted_score'] += [np.mean(scores)]
-
-        predicted_rankings = pd.DataFrame(predicted_rankings)
-
-        #### may not be necessary to do these castings
-        predicted_rankings['entity'] = predicted_rankings['entity'].astype(str)
-        true_rankings['entity'] = true_rankings['entity'].astype(str)
-        ####
-        
-        full_rankings = true_rankings.merge(predicted_rankings, how='left').fillna(0)
-
-        # spearman correlation metric
-        print("Rankings result: ")
-        print(full_rankings)
-        
-        corr, pvalue = spearmanr(full_rankings.average_stars, full_rankings.predicted_score)
-        print("Spearman Correlation Score: ", corr)
-        correlation_scores.append(corr)
-    print("Final correlation score: ", np.mean(correlation_scores))
-
-
 def predict(input_data):
     """Predict: load the trained model and score input_data
     
@@ -318,50 +175,9 @@ def predict(input_data):
     """
 
     print("==> PREDICT DATASET {}".format(input_data))
-    
-
-    # TODO: Predict Entities Here using ER Model
-    # input: str of comment text
-    # output: list of entities
-
-    # 1. Load saved ER Model using spacy.load
-    # 2. Predict entities for each input data
-    
-    # TODO: Predict Sentiments of those entities using Sentiment Analysis
-    # input: str of comment text, list of entities
-    # output: list of tuples with str and score e.g. [('pasta', 0.3612)]
-    
-    # 1. Start NLP Server
-    # 2. Predict results for each input data
-    # nlp = SentimentAnalyzer()
-    # nlp.predict(x)
-    # nlp.stop_server()
-
-    # TODO: return result
-    
-    runPrediction = prediction(input_data)
-    result = runPrediction.defaultPredict()
+    predictor = Predictor()
+    result = predictor.defaultPredict(input_data)
     return result
-
-
-def validate(result):
-    """
-    The input is the list of entities with an sentiment score outputted by
-    the prediction function above.
-
-    NOTE
-    -----------
-    Prints out intermediary results
-
-    Returns
-    -----------
-    
-    - list of correlation scores
-
-    """
-    pass
-
-
 
 # Run all pipeline sequentially for training, create pickled models and subset data
 def run(**kwargs):
@@ -370,10 +186,16 @@ def run(**kwargs):
     print("Args: {}".format(kwargs))
     print("Running <@model> by <@author>")
 
-    # TODO: Train ER Model
-    preprocess(**kwargs)  # generate dataset for training
+    reviews = pd.read_csv('./workspace/data/restaurant_reviews_10k.csv')
+    brandlist = pd.read_csv('./workspace/data/wordnet_food_beverages_list.csv', header=None, names=['word'])
+    
+    preprocess(reviews, brandlist, sample_size=2000, verbose=1)
     train(**kwargs)     # training model and save to filesystem
-    metadata(**kwargs)  # performance report of ER Model with Sentiment Analysis
+    metadata_spacy(**kwargs)  # performance report of ER Model with Sentiment Analysis
+
+    example_input = "Best Thai food ever! Love the mango curry especially and everything. They have great bubble tea too. Very nice service very polite."
+    print("EXAMPLE INPUT: ", example_input)
+    print("RESULT: ", predict(example_input))
 
 def cli():
     """Caller of the fire cli"""
