@@ -382,12 +382,14 @@ class Predictor:
     
     def rule_6(self, review, entities):
         entity_with_review = self.min_tree(review, entities, output = 'no_parse')
-        return entity_with_review
+        entity_with_sentiment = self.sentiment_analysis(entity_with_review, self.sentiment_package)
+        return entity_with_sentiment
     
     def rule_7(self, review, entities):
         self.parser = spacy.load("en_core_web_sm")
         entity_with_review = self.dependency_tree(review, entities, output = 'split_min')
-        return entity_with_review
+        entity_with_sentiment = self.sentiment_analysis(entity_with_review, self.sentiment_package)
+        return entity_with_sentiment
     
     def rule_8(self, review, entities):
         self.parser = spacy.load("en_core_web_sm")
@@ -408,8 +410,7 @@ class Predictor:
                     #if sentiment is not neutral, stop. If sentiment is neutral, keep going up tree.                    
             entity_with_sentiment.append((ent,sentiment))
             
-        entity_with_review = new_entity_with_review
-        return entity_with_review 
+        return entity_with_sentiment
         
     def rule_9(self, review, entities):
         self.parser = spacy.load("en_core_web_sm")
@@ -425,7 +426,7 @@ class Predictor:
             elif self.sentiment_package == 'stanford' and abs(sent) > 0.5:
                 entity_with_review[i] = entity_with_review_p[i]
     
-        return entity_with_review
+        return entity_with_sentiment
     
     
     
