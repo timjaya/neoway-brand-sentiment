@@ -180,16 +180,13 @@ def predict(input_data):
     return result
 
 # Run all pipeline sequentially for training, create pickled models and subset data
-def run(**kwargs):
+def run(reviews, brandlist, training_size, **kwargs):
     """Run the complete pipeline of the model.
     """
     print("Args: {}".format(kwargs))
     print("Running <@model> by <@author>")
-
-    reviews = pd.read_csv('./workspace/data/restaurant_reviews_10k.csv')
-    brandlist = pd.read_csv('./workspace/data/wordnet_food_beverages_list.csv', header=None, names=['word'])
     
-    preprocess(reviews, brandlist, sample_size=2000, verbose=1)
+    preprocess(reviews, brandlist, sample_size=training_size, verbose=1)
     train(**kwargs)     # training model and save to filesystem
     metadata_spacy(**kwargs)  # performance report of ER Model with Sentiment Analysis
 
