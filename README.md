@@ -3,12 +3,11 @@
 This model is an NLP model that detects sentiments in an entity-level to solve brand sentiment detection for Neoway.
 
 ## Stakeholders
-> Describe the people involved in this project
 
 | Role                 | Responsibility         | Full name                | e-mail       |
 | -----                | ----------------       | -----------              | ---------    |
 | Project Owner       | Author                 | Felipe Penha            | felipe.penha@alumni.usp.br |
-| Collaborator        | Co-author              | Tim Kartawijaya | tak2151@columbia.edu   |
+| Collaborator         | Co-author / Maintainer              | Tim Kartawijaya | tak2151@columbia.edu   |
 | Collaborator        | Co-author              | Charlene Luo | cl3788@columbia.edu   |
 | Collaborator        | Co-author              | Fernando Troeman | ft2515@columbia.edu   |
 | Collaborator        | Co-author              | Nico Winata | nw2408@columbia.edu   |
@@ -16,62 +15,24 @@ This model is an NLP model that detects sentiments in an entity-level to solve b
 
 
 ## Usage
-> Describe how to reproduce your model
 
-Usage is standardized across models. There are two main things you need to know, the development workflow and the Makefile commands.
+To reproduce results in the paper:
+* For final validation results (spearman correlation ranking results) run [sentiment_and_parsing_rules_end_to_end_validation](./analysis/final_validation/sentiment_and_parsing_rules_end_to_end_validation.ipynb) end to end. The dataset used in the notebook (restaurant_reviews_1900k.json) is restricted due to Yelp policy, so please contact Tim Kartawijaya. 
 
-Both are made super simple to work with Git and Docker while versioning experiments and workspace.
+* For qualitative results, run [qualitative_testings_VADER_Stanford_NLP_Benepar](./analysis/final_validation/qualitative_testings_VADER_Stanford_NLP_Benepar.ipynb).
 
-All you'll need to have setup is Docker and Git, which you probably already have. If you don't, feel free to ask for help.
-
-Makefile commands can be accessed using `make help`.
-
-
-Make sure that **docker** is installed.
-
-Clone the project from the analytics Models repo.
-```
-git clone https://github.com/timjaya/neoway-brand-sentiment.git
-cd neoway-brand-sentiment
-```
-
-
-## Final Report (to be filled once the project is done)
-
-### Model Frequency
-
-> Describe the interval frequency and estimated total time to run
-
-### Model updating
-
-> Describe how your model may be updated in the future
-
-### Maintenance
-
-> Describe how your model may be maintained in the future
-
-### Minimum viable product
-
-> Describe a minimum configuration that would be able to create a minimum viable product.
-
-### Early adopters
-
-> Describe any potential paying users for this product if it was available today. Also state a point of contact for each of them.
-
-## Documentation
-
-* [project_specification.md](./docs/project_specification.md): gives a data-science oriented description of the project.
-
-* [model_report.md](./docs/model_report.md): describes the modeling performed.
-
+To use the package for your own dataset / brand list, follow the steps done in [usage_example](./usage_example.ipynb). Documentation on how neoway_nlp works can be found in the [main](./neoway_nlp/main.py) file. (Further documentation needed here for better access). Data used in run() (restaurant_reviews_10k.csv and brand_list.csv) is restricted due to Yelp policy, so please contact Tim Kartawijaya.
 
 #### Folder structure
->Explain you folder strucure
 
-* [docs](./docs): contains documentation of the project
-* [analysis](./analysis/): contains notebooks of data and modeling experimentation.
-* [tests](./tests/): contains files used for unit tests.
-* [<@model>](./<@model>/): main Python package with source of the model.
+* [docs](./docs): contains documentation of the project (NOT COMPLETED).
+* [analysis](./analysis/): contains notebooks for modeling experimentation.
+    * [final_validation](./analysis/): contains notebooks that produce the final qualitative/quantitative results.
+    * [end_to_end_rules](./analysis/): contains notebooks that test the different parsing rules we developed.
+    * [entity_recognition](./analysis/): contains notebooks that produce the Spacy ER model.
+    * [preprocess](./analysis/): contains code to preprocess data from the Raw Yelp Reviews Dataset to digestable data.
+* [tests](./tests/): contains files used for unit tests. (NOT COMPLETED).
+* [neoway_nlp](./neoway_nlp/): main Python package with source of the model.
 
 ## Data Source
 Complete Yelp Reviews Dataset - https://www.yelp.com/dataset
