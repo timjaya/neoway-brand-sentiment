@@ -1,6 +1,6 @@
-# Neoway NLP
+# Neoway: Brand Sentiment Analyzer
 
-This project aims to create a model that is able to do two tasks simultaneously: detect entities from Yelp reviews and assign sentiment scores towards those entities (e.g. food brands, types of foods, etc.). We evaluate various open-source tools: VADER, Stanford NLP, and Benepar. Results can be found on the notebooks. 
+This project aims to create a model that is able to do two tasks simultaneously: detect entities from Yelp reviews and assign sentiment scores towards those entities (e.g. food brands). We evaluate various open-source tools: VADER, Stanford NLP, and Benepar. Results can be found on the notebooks. 
 
 ## Stakeholders
 
