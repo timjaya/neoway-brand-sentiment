@@ -1,13 +1,13 @@
 # Neoway NLP
 
-This model is an NLP model that detects sentiments in an entity-level to solve brand sentiment detection for Neoway.
+This project aims to create a model that is able to do two tasks simultaneously: detect entities from Yelp reviews and assign sentiment scores towards those entities (e.g. food brands, types of foods, etc.). We evaluate various open-source tools: VADER, Stanford NLP, and Benepar. Results can be found on the notebooks. 
 
 ## Stakeholders
 
 | Role                 | Responsibility         | Full name                | e-mail       |
 | -----                | ----------------       | -----------              | ---------    |
-| Project Owner       | Author                 | Felipe Penha            | felipe.penha@alumni.usp.br |
-| Collaborator         | Co-author / Maintainer              | Tim Kartawijaya | tak2151@columbia.edu   |
+| Project Owner       | Stakeholder                 | Felipe Penha            | felipe.penha@alumni.usp.br |
+| Collaborator        | Co-author / Project Lead              | Tim Kartawijaya | tak2151@columbia.edu   |
 | Collaborator        | Co-author              | Charlene Luo | cl3788@columbia.edu   |
 | Collaborator        | Co-author              | Fernando Troeman | ft2515@columbia.edu   |
 | Collaborator        | Co-author              | Nico Winata | nw2408@columbia.edu   |
